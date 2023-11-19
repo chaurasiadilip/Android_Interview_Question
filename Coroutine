@@ -329,3 +329,7 @@ fun main() = runBlocking {
 In this example, the performLongRunningTask function simulates a long-running operation that takes 10 seconds to complete. We use withTimeoutOrNull with a timeout of 5 seconds, so if the operation takes longer, it times out and prints "Operation timed out."
 
 In the main function, we launch the performLongRunningTask coroutine and wait for 3 seconds. Then, we cancel the job using job.cancel(). As a result, the long-running task is canceled, and the timeout condition is met. You can adjust the timeout duration and the cancellation point as needed for your specific use case.
+
+
+Reference
+https://medium.com/@myselfdew01/coroutine-kotlin-android-interview-questions-ae7c667f7695
