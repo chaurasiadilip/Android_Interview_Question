@@ -92,3 +92,6 @@ Answer:
 
 📖 Both numbers and otherNumbers refer to the same underlying list object. Modifying one list will affect the other as well.
 
+
+https://betulnecanli.medium.com/kotlin-tricky-output-questions-2bafb5e0b41a
+
