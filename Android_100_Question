@@ -1776,3 +1776,177 @@ internal: Internal declarations are visible within the same module. A module is 
 protected internal: A combination of protected and internal. Protected internal declarations are visible within the same module and subclasses.
 private internal: A combination of private and internal. Private internal declarations are visible within the same file and the same module.
 These visibility modifiers allow you to control the visibility and accessibility of your code, ensuring proper encapsulation and modularization. By choosing the appropriate visibility modifier, you can limit access to certain declarations and enforce proper usage of your code.
+
+
+
+
+In Kotlin coroutines, what are the ways to switch between threads?
+
+We can use coroutines to switch between threads using a feature called Dispatchers. Coroutines allow you to write asynchronous code in a more sequential and readable manner. To switch between threads, we can change the dispatcher context in which the coroutine runs.
+
+The available dispatchers are:
+
+1)Dispatchers.Default: This is used for CPU-intensive tasks, like sorting or parsing JSON.
+2) Dispatchers.IO: This is used for IO-bound tasks, like reading or writing to files or making network requests. for eg: when we getting the data from API/Repo/DB
+3) Dispatchers.Main: This is typically used for UI-related tasks in Android applications. for eg: Once we update the receive data from API/Repo/DB on RecycleView/Layout.
+
+Concept of Dispatchers in the context of Kotlin coroutines with examples.
+
+
+The runBlocking function is used here to create a coroutine in the main thread for demonstration purposes. In a project application, we might create coroutines in a more structured way using launch or async functions.
+
+By using withContext, we can switch to a different dispatcher temporarily and then return to the original dispatcher after the block of code completes.
+
+The Dispatchers.Main dispatcher is typically used in Android applications. If you are running this code outside an Android application, you may not have access to the Main dispatcher. In such cases, you can use the runBlocking function without specifying a dispatcher to run the coroutine in the main thread.
+
+How do you ensure that coroutines are properly canceled or cleared to avoid memory leaks?
+
+To ensure coroutines are properly canceled or cleared to avoid memory leaks, we should use structured concurrency with functions like lifecycleScope or viewModelScope. These scopes automatically cancel all child coroutines when the associated lifecycle is destroyed (e.g., when the Activity or Fragment is destroyed). It helps prevent leaking coroutines and resources.
+
+
+cancel job
+We can call the cancel() function on a coroutine to manually cancel it.
+Note: This method can lead to potential resource leaks if not handled properly. If the coroutine is performing any IO or other asynchronous operations, it won’t be automatically canceled, and We need to handle the cancellation appropriately in our code.
+
+
+We also need to override onDestroy() method.
+
+In this approach, We don’t need to manually cancel the coroutine. When the associated lifecycle (in this case, when onDestroy is called), the coroutine will be automatically cancelled by the lifecycle-aware scope (lifecycleScope). Similarly, We can use viewModelScope in a ViewModel to achieve the same structured concurrency behavior.
+
+What is the purpose of runBlocking and when would you use it?
+
+runBlocking is a coroutine builder in Kotlin that allows us to run a new coroutine and block the current thread until the coroutine completes. It is mainly used for writing simple test cases, bridging between coroutine-based and synchronous code, and for starting the main coroutine in applications. It should be used judiciously and with care since blocking the thread can lead to performance issues and defeat the purpose of using coroutines for asynchronous programming.
+
+The ‘runBlocking’ function takes a ‘block’ of code, which is a lambda with a suspend modifier. The ‘block’ represents the code that will be executed within the coroutine. The function returns the result of the ‘block’ when it completes.
+
+What is the purpose of the init block in Kotlin classes? How does it differ from the constructor?
+
+The init block in Kotlin is used to initialize properties and execute code that needs to be run when an instance of a class is created. It is a part of the primary constructor and is called during the object initialization phase.
+
+Differences from the constructor:
+
+The primary constructor can initialize properties directly as part of the parameter list, whereas the init block allows you to perform additional initialization logic.
+If there are multiple constructors, the init block is always executed regardless of which constructor is called. It consolidates common initialization code.
+class Person(name: String, age: Int) {
+    val name: String
+    val age: Int
+
+    init {
+        this.name = name
+        this.age = age
+        println("Person object created: $name, $age")
+    }
+}
+Explain the concepts of companion objects and how they are used in Kotlin.
+
+In Kotlin, a companion object is a special object that is associated with the class in which it is declared. It is similar to static members in other programming languages but with more capabilities. The companion object is shared among all instances of the class, and its members can be accessed directly using the class name.
+
+class MyClass {
+    companion object {
+        const val CONSTANT_VALUE = 42
+
+        fun create(): MyClass {
+            return MyClass()
+        }
+    }
+}
+
+// Accessing companion object members
+val constant = MyClass.CONSTANT_VALUE
+val instance = MyClass.create()
+Explain the concept of extension functions in Kotlin and provide an example of how they can be used?
+
+Extension functions in Kotlin allow us to add new functions to existing classes without modifying their source code. They are powerful tools for adding utility functions to classes from external libraries or standard classes.
+
+// Extension function for the String class
+fun String.isPalindrome(): Boolean {
+    val cleanString = this.toLowerCase().replace(Regex("[^a-zA-Z0-9]"), "")
+    return cleanString == cleanString.reversed()
+}
+
+fun main() {
+    val text = "A man, a plan, a canal, Panama!"
+    println(text.isPalindrome()) // Output: true
+}
+In this example, we added an isPalindrome extension function to the String class. The function checks if the string is a palindrome (reads the same backward as forward).
+
+Explain the difference between the let, apply, run, also, and with scope functions in Kotlin.
+
+These functions allows us to execute a block of code in the context of an object.
+
+let: It is used to perform a block of code on a non-null object and return the result of the last expression within the block. It is commonly used for safe null checks and chaining operations.
+
+apply: It is used to configure an object by calling multiple methods on it and returns the object itself. It is useful when you need to set properties on an object during its initialization.
+
+run: It is used to execute a block of code on an object, similar to let, but it returns the result of the last expression within the block or the entire object if no return value is specified.
+
+also: It is used to perform additional actions on an object and returns the original object. It is typically used for logging or side effects without altering the original object.
+
+with: It is used to call multiple methods on an object without the need to repeat the object reference. It does not return anything and is useful when you need to perform several operations on the same object.
+
+data class Person(var name: String, var age: Int)
+
+fun main() {
+    val person = Person("Ekta", 28)
+
+    val resultLet = person.let {
+        it.age + 5
+    }
+
+    val resultApply = person.apply {
+        name = "Bob"
+        age = 25
+    }
+
+    val resultRun = person.run {
+        "Person: $name, Age: $age"
+    }
+
+    val resultAlso = person.also {
+        println("Person name: ${it.name}")
+    }
+
+    val resultWith = with(person) {
+        "Person: $name, Age: $age"
+    }
+
+    println("Result Let: $resultLet")
+    println("Result Apply: $resultApply")
+    println("Result Run: $resultRun")
+    println("Result Also: $resultAlso")
+    println("Result With: $resultWith")
+}
+What is the concept of inline functions in Kotlin and when they are used?
+
+In Kotlin, an inline function is a higher-order function modifier that suggests the compiler to perform "inlining" of the function's code at the call site. When you mark a function as inline, the function's bytecode is copied directly into the calling code, which can lead to improved performance in certain situations.
+
+Use case of inline functions:
+
+Reducing the overhead of function calls
+inline fun executeOperation(a: Int, b: Int, operation: (Int, Int) -> Int): Int {
+    return operation(a, b)
+}
+
+fun main() {
+    val result = executeOperation(5, 3) { x, y -> x + y }
+    println("Result: $result")
+}
+Explain the concept of smart casts in Kotlin. How do they work, and what benefits do they provide?
+
+Smart casts in Kotlin are automatic type casts that the compiler performs based on certain conditions. When the compiler can guarantee that a variable is of a specific type within a certain code block, it will automatically cast the variable to that type, allowing you to use its properties and functions without the need for explicit type checks or casts.
+
+Smart casts work with the is operator and !is operator, which are used for type checks.
+
+fun printLength(any: Any) {
+    if (any is String) {
+        // Smart cast to String
+        println("Length: ${any.length}")
+    } else {
+        println("Not a String")
+    }
+}
+Benefits of smart casts:
+
+Increased type safety: Smart casts eliminate the need for manual type checks and casting, reducing the chances of runtime type errors.
+Cleaner code: They simplify code and make it more concise and readable by removing redundant type checks and casts.
+Improved developer productivity: Smart casts save developers from writing boilerplate code, improving productivity.
