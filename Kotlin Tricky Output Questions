@@ -1,0 +1,94 @@
+1. Nullable Types
+
+What will be the output?
+
+Answer:
+
+
+📖This code will throw a NullPointerException at runtime because of the use of the non-null assertion (!!) on a nullable variable (name).
+
+2. Smart Casts
+
+What will be the output?
+
+Answer:
+
+
+📖The output will be 14, including the comma and the space, as the value is smart cast to String inside the if block, and its length property is accessed.
+
+3. Data Classes
+
+What will be the output?
+
+Answer:
+
+
+📖 The output will be false because person1 and person2 are distinct objects, and the == checks for structural equality.
+
+4.Lambda Expressions and Scoping
+
+What will be the output?
+
+Answer:
+
+
+📖The lambda captures and modifies the counter variable each time it's invoked.
+
+5.Property Delegation
+
+What will be the output?
+
+Answer:
+
+
+📖 The observable delegate prints changes to the name property.
+
+6.Generics and Variance
+
+What will be the output?
+
+Answer:
+
+
+📖 Box is a generic class that takes a type parameter T. The out modifier in the generic type parameter declaration (out T) indicates that T is a covariant type parameter.
+
+Covariant types allow for widening the type hierarchy: In the context of the Box class, if T is a covariant type, it means that if A is a subtype of B, then Box<A> is considered a subtype of Box<B>.
+
+7. Extension Functions and Companion Objects
+
+What will be the output?
+
+Answer:
+
+
+📖 The extension function myExtension is called on the companion object of MyClass.
+
+8.Generics and Reified Types
+
+What will be the output?
+
+Answer:
+
+
+📖 The printType function uses reified types to print the simple names of the types String and Int.
+
+9. Inline Functions
+
+What will be the output?
+
+Answer:
+
+
+📖 In Kotlin, the return@label statement inside a lambda refers to the nearest enclosing function with the specified label. In this case, return@performOperation is intended to return from the performOperation function. However, the inline nature of the function affects the behavior.
+
+In an inline function, the lambda passed to it can be inlined at the call site. In this scenario, the return@performOperation statement does not return from the performOperation function, but it returns from the lambda itself, effectively skipping the remaining code inside the lambda.
+
+10.Mutable Lists and References
+
+What will be the output?
+
+Answer:
+
+
+📖 Both numbers and otherNumbers refer to the same underlying list object. Modifying one list will affect the other as well.
+
