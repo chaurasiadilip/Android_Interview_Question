@@ -1,4 +1,5 @@
 What happens to an Activity when the Home button is pressed?
+
 Answer: When the Home button is pressed, the current Activity is moved to the background, and the onPause() method is called, followed by onStop(). The Activity is not destroyed, but it can be killed by the system when memory is needed elsewhere.
 
 2. What happens to an Activity when the Back button is pressed?
