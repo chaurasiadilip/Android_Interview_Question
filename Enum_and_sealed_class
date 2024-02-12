@@ -1,0 +1,270 @@
+https://medium.com/@KaushalVasava/sealed-class-and-enum-class-in-kotlin-c22713b35f0f
+
+We’ll learn about sealed class and Enum class. What is it? How do we use it? What are pros and cons? Which is best in which scenario? Performance and memory usage about it.
+
+Enum classes and sealed classes are two different concepts in programming that serve distinct purposes. Let’s learn it using differentiate them over various aspects with simple examples to help you understand when to choose one over the other.
+Purpose
+Enum class:
+
+    Enum classes are used to represent a fixed set of constants (enumeration) with predefined values.
+    They are typically used when you have a limited number of choices that don’t change frequently.
+
+Sealed class:
+
+    Sealed classes are used to create a hierarchy of classes where all the subclasses are known and limited.
+    They are useful when you want to represent a closed set of related classes, and you want to restrict further extension outside of that set.
+
+Example:
+
+Enum class:
+
+enum class Color {
+    RED, GREEN, BLUE
+}
+
+Sealed class:
+
+sealed class Shape {
+    class Circle(val radius: Double) : Shape()
+    class Square(val sideLength: Double) : Shape()
+}
+
+Properties
+Enum class:
+
+In Enum classes, each Enum value cannot have its own unique property. You are forced to have the same property for each Enum value:
+
+enum class DeliveryStatus(val trackingId: String?) {
+    PREPARING(null),
+    DISPATCHED("27211"),
+    DELIVERED("27211"),
+}
+
+Here we need the trackingId only for the DISPATCHED and DELIVERED, the PREPARING is forced to have a null value.
+Sealed class:
+
+In case of sealed classes, we can have different properties for each subtype:
+
+sealed class DeliveryStatus
+class Preparing() : DeliveryStatus()
+class Dispatched(val trackingId: String) : DeliveryStatus()
+class Delivered(val trackingId: String, val receiversName: String) : DeliveryStatus()
+
+Here we have different properties for each subtype. Preparing doesn't need properties for our use case, so we have the flexibility to not specify any property unlike forced null values in enums. Dispatched has one property while the Delivered has two properties.
+
+Considering the example Color(val value: Int) in the question, you have a common value: Int property for all constants and since you don't need different properties for different constants, you should use enums in this case.
+Functions
+Enum class:
+
+Enums can have abstract functions as well as regular functions. But like properties, each enum value also has to have the same function:
+
+enum class DeliveryStatus {
+    PREPARING {
+        override fun cancelOrder() = println("Cancelled successfully")
+    },
+    DISPATCHED {
+        override fun cancelOrder() = println("Delivery rejected")
+    },
+    DELIVERED {
+        override fun cancelOrder() = println("Return initiated")
+    };
+
+    abstract fun cancelOrder()
+}
+
+In this example, we have an abstract function cancelOrder() that we have to override in each enum value. That means, we can't have different functions for different enum values.
+
+Usage:
+
+class DeliveryManager {
+    fun cancelOrder(status: DeliveryStatus) {
+        status.cancelOrder()
+    }
+}
+
+Sealed class:
+
+In sealed classes we can have different functions for different subtypes:
+
+sealed class DeliveryStatus
+
+class Preparing : DeliveryStatus() {
+    fun cancelOrder() = println("Cancelled successfully")
+}
+
+class Dispatched : DeliveryStatus() {
+    fun rejectDelivery() = println("Delivery rejected")
+}
+
+class Delivered : DeliveryStatus() {
+    fun returnItem() = println("Return initiated")
+}
+
+Here we have different functions: cancelOrder() for Preparing, rejectDelivery() for Dispatched and returnItem() for Delivered. This makes the intent clearer and makes the code more readable, also we have the option of not having the function, in case we don't want to.
+
+Usage:
+
+class DeliveryManager {
+    fun cancelOrder(status: DeliveryStatus) = when(status) {
+        is Preparing -> status.cancelOrder()
+        is Dispatched -> status.rejectDelivery()
+        is Delivered -> status.returnItem()
+    }
+}
+
+If we want a common function for all subtypes like in the enum example, we can have that in sealed class by defining it in the sealed class itself and then overriding it in the subtypes:
+
+sealed class DeliveryStatus {
+    abstract fun cancelOrder()
+}
+
+The advantage of having a common function for all types is that we don’t have to type check using the is operator. We can simply use polymorphism as shown in the DeliveryManager class of enum example.
+Inheritance
+Enum class:
+
+Enum classes are not extendable. You cannot add new constants to an enum class at runtime.
+
+Since enum values are objects, they cannot be extended:
+
+class LocallyDispatched : DeliveryStatus.DISPATCHED { }    // Error
+
+The enum class is implicitly final, so it cannot be extended by other classes:
+
+class FoodDeliveryStatus : DeliveryStatus() { }            // Error
+
+Enum classes cannot extend other classes, they can only extend interfaces:
+
+open class OrderStatus { }
+interface Cancellable { }
+
+enum class DeliveryStatus : OrderStatus() { }              // Error
+enum class DeliveryStatus : Cancellable { }                // OK
+
+Sealed class:
+
+Sealed classes are extendable but within the same file or module. This means you can create new subclasses of a sealed class, but they must be defined in the same codebase.
+
+Since sealed class subtypes are types, they can be extended:
+
+class LocallyDispatched : Dispatched() { }                 // OK
+
+The sealed class itself can be extended, of course!:
+
+class PaymentReceived : DeliveryStatus()                   // OK
+
+Sealed classes can extend other classes as well as interfaces:
+
+open class OrderStatus { }
+interface Cancellable { }
+
+sealed class DeliveryStatus : OrderStatus() { }           // OK
+sealed class DeliveryStatus : Cancellable { }             // OK
+
+Number of Instances
+Enum class:
+
+Since enum values are objects and not types, we cannot create multiple instances of them:
+
+enum class DeliveryStatus(val trackingId: String?) {
+    PREPARING(null),
+    DISPATCHED("27211"),
+    DELIVERED("27211"),
+}
+
+In this example, DISPATCHED is an object and not a type, so it can exist only as a single instance, we can't create more instances from it:
+
+// Single instance
+val dispatched1 = DeliveryStatus.DISPATCHED               // OK
+
+// Another instance
+val dispatched2 = DeliveryStatus.DISPATCHED("45234")      // Error
+
+Sealed class:
+
+Subtypes of sealed classes are types, so we can create multiple instances of these types. We can also make a type to have only a single instance using an object declaration:
+
+sealed class DeliveryStatus
+object Preparing : DeliveryStatus()
+class Dispatched(val trackingId: String) : DeliveryStatus()
+data class Delivered(val receiversName: String) : DeliveryStatus()
+
+In this example, we can create multiple instances of Dispatched and Delivered. Notice that we have utilised the ability of the subtypes of the sealed class to be as a singleton object, a regular class or a data class. Preparing can can have only a single object, just like an enum value:
+
+// Multiple Instances
+val dispatched1 = Dispatched("27211")                     // OK
+val dispatched2 = Dispatched("45234")                     // OK
+
+// Single Instance
+val preparing1 = Preparing                                // OK
+val preparing2 = Preparing()                              // Error
+
+Notice also that in the code above, each instance of Dispatched can have a different value for the trackingId property.
+Serializable and Comparable
+Enum class:
+
+Every enum class in Kotlin is implicitly extended by the abstract class java.lang.Enum. So, all the enum values automatically have the implementations for equals(), toString(), hashCode(), Serializable and Comparable. We don't have to define them.
+Sealed class:
+
+For sealed classes we need to define them manually or use data class for the automatic equals(), toString() and hashcode() and then implement Serializable and Comparable manually.
+Performance
+Enum class:
+
+Enums don’t get garbage collected, they stay in memory for the lifespan of your app. This can be an upside or a downside. Garbage collection process is expensive.
+
+Upside of Enums:
+
+    Enums don’t disappear from memory once you create them, which can save time and memory because you don’t have to create them over and over.
+    Comparing enum values is quick and efficient, making your code faster when you need to check which option you have.
+
+Downside of Enums:
+
+Enums stay in memory even when you’re not in using them, this can keep the memory occupied all the time.
+
+    If you have just a few (around 100–200) enums, you don’t need to worry about memory much. But if you have a lot, think about how often you’ll use them and how much memory your program can use.
+
+Comparison:
+
+The comparison of enum values is faster in the when expression because under the hood, it uses tableswitch to compare the objects. So, for the example given in the question, enums should be preferred as they will be faster in this case.
+
+Special Case for Android: For Performance
+
+    In Android, there’s a cool trick where, if you’re not using functions or extra features with enums, they can be turned into integers for better performance by a tool called Proguard. So, you get the type-safety of enums when you write code, but they act like integers when the app runs to make things faster or in other words, you get type safety at compile-time and the performance of the integers at runtime!
+
+Sealed class:
+
+If you use object declaration for extending the sealed class, the objects act as singletons and they won't be garbage collected, just like enums.
+
+The comparison of sealed class’ types is slower in when expression because under the hood it uses instanceof to compare the types. The speed difference between enums and sealed classes, in this case, is very little though. It matters only when you are comparing thousands of constants in a loop.
+
+Performance:
+
+    Sealed classes perform just like regular classes, so they don’t have any special performance advantages or drawbacks.
+
+Garbage Collection:
+
+    Objects created from sealed class subclasses are managed by the garbage collector, just like objects from regular classes. This means you’ll have to deal with the cost of both creating and cleaning up these objects.
+
+Memory Considerations:
+
+    If your app has limited memory available, sealed classes can be a good choice if you need a lot (thousands) of objects. This is because the garbage collector can free up memory when these objects are no longer needed.
+
+Singleton-Like Behavior:
+
+    If you use a special way to create objects from sealed classes, called “object declaration,” those objects behave like singletons. This means they won’t be cleaned up by the garbage collector, similar to enums.
+
+Comparison with Enums:
+
+    The comparison of sealed class’ types is slower in when expression because under the hood it uses instanceof to compare the types. The speed difference between enums and sealed classes, in this case, is very little though. It matters only when you are comparing thousands of constants in a loop.
+
+Usage Scenarios:
+
+Enum class:
+
+    Use Enum classes when you have a fixed, unchanging set of values like days of the week, card suits, or simple options.
+    Enum classes are rigid and are best suited for situations with a fixed set of values that do not change.
+
+Sealed class:
+
+    Use sealed classes when you have a hierarchy of related classes, and you want to control and restrict the possible subclasses, typically in more complex scenarios like representing shapes, expressions, or states.
+    Sealed classes are more flexible and allow you to define complex hierarchies and behaviors within your subclasses.
+
