@@ -1,6 +1,8 @@
 1. What is a coroutine in Kotlin? How does it differ from regular threads or callbacks?
+   
 Kotlin’s coroutines are a lightweight concurrent programming feature that enable asynchronous, non-blocking code execution. Coroutines are user-level constructions controlled by the Kotlin runtime, in contrast to threads, which are OS-level entities. They may be stopped and resumed, which makes them more memory-efficient and appropriate for managing asynchronous tasks without the overhead of conventional threads. Additionally, callback-based programming is less legible and maintainable than coroutines.
-2. Explain the key advantages of using coroutines over traditional callback-based or thread-based concurrency models.
+
+3. Explain the key advantages of using coroutines over traditional callback-based or thread-based concurrency models.
 
 Coroutines provide several advantages over traditional models:
 
@@ -9,9 +11,11 @@ They eliminate callback hell (pyramid of doom) by using sequential code structur
 Coroutines are more memory-efficient than creating a large number of threads.
 They allow for structured concurrency, ensuring that all launched coroutines are properly managed.
 Coroutines can easily handle cancellation, timeouts, and error handling.
+
 3. What is the main purpose of the suspend keyword in Kotlin, and how is it related to coroutines?
 
 The suspend keyword is used in Kotlin to mark functions that can be executed in a coroutine and can be paused and resumed. These functions can be called from other suspending functions or coroutines, allowing for asynchronous, non-blocking execution. It indicates that a function can be suspended, and its execution can be paused until the result is available, without blocking the thread.
+
 4. How do you launch a new coroutine in Kotlin, and what are the different coroutine builders available?
 
 Coroutines can be launched using coroutine builders like launch, async, and runBlocking. For example:
@@ -27,12 +31,15 @@ val deferred = GlobalScope.async {
 5. Describe the role of a coroutine dispatcher. What are some common dispatchers, and when should you use them?
 
 A coroutine dispatcher determines which thread or context a coroutine runs on. Common dispatchers include Dispatchers.Default (for CPU-bound tasks), Dispatchers.IO (for I/O-bound tasks), and Dispatchers.Main (for the main/UI thread). The choice of dispatcher depends on the nature of the task, ensuring that it doesn't block the main thread and runs efficiently on the appropriate thread.
+
 6. What is a CoroutineScope, and why is it important when working with coroutines?
 
 A CoroutineScope is an interface that provides a structured way to manage and cancel coroutines. It's crucial for ensuring that launched coroutines are properly canceled when they are no longer needed, preventing resource leaks and runaway coroutines. It is often associated with a particular scope or context, like an Android ViewModel, to manage the coroutine's lifecycle.
+
 7. What is the difference between async and launch coroutine builders? When would you use one over the other?
 
 launch is used to launch a coroutine that doesn't return a result, while async is used when you need a result from the coroutine. async returns a Deferred object, which can be used to retrieve the result asynchronously. Use launch when you need to perform a task without returning a result, and use async when you need to obtain a result from a coroutine.
+
 8. How can you handle exceptions in coroutines, and what is the purpose of the CoroutineExceptionHandler?
 
 Exceptions in coroutines can be handled using try-catch blocks or by defining a CoroutineExceptionHandler. The CoroutineExceptionHandler allows you to specify how to handle unhandled exceptions within the coroutine. For example:
