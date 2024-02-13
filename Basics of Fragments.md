@@ -1,5 +1,7 @@
 Basics of Fragments:
+
 What is a Fragment in Android?
+
 Answer: A Fragment is a modular section of an Android activity, representing a part of the UI or behavior in an activity.
 
 2. How is a Fragment different from an Activity?
