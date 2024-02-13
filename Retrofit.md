@@ -1,6 +1,7 @@
 1.What is Retrofit, and how does it simplify the process of making network requests in Android applications?
 
 Explanation: Retrofit is a type-safe HTTP client for Android and Java/Kotlin that simplifies the consumption of RESTful APIs. It allows developers to define API endpoints and their request/response types using annotations, making it easier to work with web services.
+
 2.Explain the purpose of the @GET annotation in Retrofit, and provide an example of its usage in defining a GET request.
 
 Explanation: The @GET annotation is used to define an HTTP GET request in Retrofit. It is applied to a method in an API interface and specifies the relative URL for the endpoint. For example:
@@ -10,6 +11,7 @@ Call<Post> getPostById(@Path(“id”) int postId);
 3. What is the significance of the Converter interface in Retrofit, and how does it contribute to the conversion of request/response bodies?
 
 Explanation: The Converter interface is responsible for converting between HTTP request/response bodies and Java objects. Retrofit uses converters like GsonConverterFactory to serialize and deserialize data between the app and the server.
+
 4.How does Retrofit handle dynamic URL parameters, and what role does the @Path annotation play in this context?
 
 Explanation: Retrofit handles dynamic URL parameters using the @Path annotation. It allows developers to include dynamic values in the URL, providing flexibility. For example:
@@ -22,9 +24,11 @@ Explanation: The Interceptor interface allows developers to intercept and modify
 6.Differentiate between Call<T> and Deferred<T> in Retrofit, and when would you prefer to use one over the other?
 
 Explanation: Call<T> is used for synchronous network requests, while Deferred<T> is used for asynchronous requests with Kotlin's coroutines. Use Call<T> for synchronous operations and Deferred<T> for asynchronous tasks.
+
 7.How does Retrofit handle error responses from the server, and how can you customize the error handling process?
 
 Explanation: Retrofit treats HTTP error responses as exceptions. Developers can use the Callback interface or suspend functions with Kotlin's coroutines to handle different HTTP status codes and customize error handling based on the server's response.
+
 8. Explain the purpose of the @Query annotation in a Retrofit API method and provide an example of its usage in passing parameters in a GET request.
 
 Explanation: The @Query annotation is used to add query parameters to a URL in a Retrofit API method. It allows developers to pass key-value pairs as parameters in a GET request. For example:
@@ -34,9 +38,11 @@ Call<List<Item>> searchItems(@Query(“query”) String query);
 9.How does Retrofit support file uploads in API requests, and what annotations are commonly used for this purpose?
 
 Explanation: Retrofit supports file uploads using the @Part annotation. Developers can send files as parts of a multipart request. Additional annotations like @Multipart and @PartMap are commonly used for this purpose.
+
 10.Explain the role of the RxJavaCallAdapterFactory and CoroutineCallAdapterFactory in Retrofit, and how they enable integration with RxJava and Kotlin coroutines, respectively.
 
 Explanation: RxJavaCallAdapterFactory and CoroutineCallAdapterFactory are used to enable integration with RxJava and Kotlin coroutines, allowing developers to use reactive programming or coroutines for handling asynchronous network requests.
+
 11. How does Retrofit handle the conversion of JSON responses to Java or Kotlin objects, and what role does the Converter.Factory play in this process?
 
 Explanation: Retrofit uses a Converter.Factory to convert between HTTP request/response bodies and Java or Kotlin objects. For JSON serialization/deserialization, you'd typically use libraries like GsonConverterFactory.
@@ -53,27 +59,33 @@ Call<User> getUser();
 13. What is the purpose of the @Url annotation in Retrofit, and in what scenarios would you use it?
 
 Explanation: @Url is used to dynamically specify the URL for a request. It can be applied to a parameter of a method to override the base URL for that specific request. Useful when you need to construct URLs dynamically.
+
 14. Explain how to handle different response types (success and error) using Retrofit, especially when the server returns non-2xx status codes.
 
 Explanation: Retrofit treats HTTP error responses as exceptions. To handle different response types, you can use Response<T> for both success and error cases or customize error handling by implementing your error model or using a callback.
+
 15. What is the purpose of the @Streaming annotation in Retrofit, and how can it be used for handling large files or streaming responses?
 
 Explanation: @Streaming is used to indicate that the response should be streamed, which is useful for handling large files. It prevents the entire response from being loaded into memory at once.
 16.Explain the differences between @Field, @FieldMap, @Query, and @QueryMap annotations in Retrofit, and provide use cases for each.
 
 Explanation: @Field and @FieldMap are used for form-urlencoded requests, while @Query and @QueryMap are used for adding parameters to the URL in GET requests. Use @Field when sending form data and @Query when adding parameters to the URL.
+
 17.How can you handle authentication in Retrofit, and what are the common methods for passing authentication tokens to API requests?
 
 Explanation: Authentication in Retrofit can be handled by adding headers to requests, typically using the @Header or @HeaderMap annotations. Common methods include passing an authentication token in the header or using OAuth.
 18.Explain the use of the @FormUrlEncoded annotation in Retrofit, and provide an example of when it is necessary to use it.
 
 Explanation: @FormUrlEncoded is used to indicate that the request body will be in form-urlencoded format. It is necessary when sending data in the body of a POST request using @Field or @FieldMap annotations.
+
 19.What is the purpose of the @DELETE annotation in Retrofit, and how can it be used to define a DELETE request in an API interface?
 
 Explanation: The @DELETE annotation is used to define an HTTP DELETE request in Retrofit. It is applied to a method in an API interface, specifying the relative URL for the endpoint.
+
 20.Explain the role of the @Multipart annotation in Retrofit, and provide an example of how it can be used for sending multipart/form-data requests.
 
 Explanation: @Multipart is used to indicate that the request has a multipart body. It is applied to a method in an API interface along with the @Part annotation for each part of the request, typically used for file uploads.
+
 21. Explain the purpose of the @Body annotation in Retrofit and provide an example of how it can be used for sending data in the request body.
 
 Explanation: @Body is used to define the request body for POST or PUT requests in Retrofit. It allows you to send data in the request body, typically used for sending JSON objects. For example:
@@ -83,6 +95,7 @@ Call<User> createUser(@Body User user);
 22.How can you implement logging of network requests and responses in Retrofit, and what are the common libraries or interceptors used for this purpose?
 
 Explanation: Logging of network requests and responses in Retrofit can be implemented using interceptors like OkHttp’s HttpLoggingInterceptor. It allows you to log details such as headers, bodies, and timings.
+
 23.Explain the purpose of the @Part annotation in Retrofit, and provide an example of how it can be used for sending parts of a multipart request.
 
 Explanation: @Part is used to define parts of a multipart request when using @Multipart. It can be applied to parameters of a method in an API interface. For example:
@@ -100,6 +113,7 @@ Call<ResponseBody> login(@Field(“username”) String username, @Field(“passw
 25.Explain how to handle token expiration and refreshing in Retrofit when dealing with APIs that use token-based authentication.
 
 Explanation: Token expiration and refreshing can be handled by intercepting responses, checking for authentication errors, and then triggering a token refresh. You might need to use a token refresh endpoint provided by the API.
+
 26.What is the purpose of the @QueryMap annotation in Retrofit, and how can it be used to send multiple query parameters in a GET request?
 
 Explanation: @QueryMap is used to pass multiple query parameters in a GET request. It allows you to dynamically construct a map of query parameters. For example:
@@ -109,9 +123,11 @@ Call<List<Item>> searchItems(@QueryMap Map<String, String> options);
 27.How can you handle session management in Retrofit, especially when dealing with APIs that require session cookies for authentication?
 
 Explanation: Session management in Retrofit involves storing and sending session cookies. You can achieve this by using interceptors to capture and persist cookies across requests. Ensure proper handling of cookie expiration and renewal.
+
 28.Explain the purpose of the @PUT annotation in Retrofit, and provide an example of how it can be used to define a PUT request in an API interface.
 
 Explanation: The @PUT annotation is used to define an HTTP PUT request in Retrofit. It is applied to a method in an API interface, specifying the relative URL for the endpoint.
+
 29.What is the significance of the @Header annotation in Retrofit, and provide an example of how it can be used to add a custom header to a request.
 
 Explanation: @Header is used to add a custom header to a request in Retrofit. It can be applied at the method or parameter level. For example:
@@ -121,6 +137,7 @@ Call<User> getUser(@Header(“Authorization”) String authorization);
 30.Explain the use of the @HTTP annotation in Retrofit, and in what scenarios would you use it instead of other HTTP method annotations like @GET or @POST.
 
 Explanation: @HTTP is a flexible annotation that allows you to specify any HTTP method. It's useful when dealing with non-standard HTTP methods or when the method needs to be determined dynamically at runtime.
+
 31.Explain the purpose of the @HeaderMap annotation in Retrofit, and provide an example of how it can be used to add multiple custom headers to a request.
 
 Explanation: @HeaderMap is used to add multiple custom headers to a request in Retrofit. It allows you to dynamically construct a map of headers. For example:
@@ -130,6 +147,7 @@ Call<User> getUser(@HeaderMap Map<String, String> headers);
 32.How can you handle timeouts in Retrofit to prevent long-running requests from affecting the user experience, and what are the considerations in setting appropriate timeout values?
 
 Explanation: Timeouts in Retrofit can be set using OkHttp’s callTimeout and readTimeout options. Considerations include balancing responsiveness with network conditions and the nature of the requests being made.
+
 33.Explain the purpose of the @Url annotation in Retrofit and provide an example of how it can be used to dynamically set the URL for a request.
 
 Explanation: @Url is used to dynamically set the URL for a request in Retrofit. It can be applied to a parameter of a method to override the base URL for that specific request. For example:
