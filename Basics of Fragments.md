@@ -32,6 +32,7 @@ remove: Detaches an existing Fragment from the UI.
 Fragment Lifecycle:
 
 What is the significance of onActivityCreated in the Fragment lifecycle?
+
 Answer: onActivityCreated is called after onCreate and indicates that the activity's onCreate method has completed.
 
 2. Explain the use of onSaveInstanceState in a Fragment.
@@ -60,6 +61,7 @@ Answer:
 
 FrameLayout: Designed to hold a single child view, often used as a container for Fragments.
 RelativeLayout: Allows positioning of child views relative to each other or the parent.
+
 4. How can you communicate between a Fragment and its hosting Activity?
 
 Answer: Define an interface in the Fragment, implement it in the hosting Activity, and then use it to communicate.
