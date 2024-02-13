@@ -1,4 +1,5 @@
 What are Android Architecture Components? Android Architecture
+
 Answer: Components are a collection of libraries that help you design robust, testable, and maintainable apps. They provide a clear and idiomatic way to consume REST APIs. These components include Room, ViewModel, LiveData, and others.
 
 2. What is LiveData?
