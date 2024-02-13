@@ -28,7 +28,9 @@ Answer:
 
 replace: Replaces the existing Fragment with a new one.
 remove: Detaches an existing Fragment from the UI.
+
 Fragment Lifecycle:
+
 What is the significance of onActivityCreated in the Fragment lifecycle?
 Answer: onActivityCreated is called after onCreate and indicates that the activity's onCreate method has completed.
 
