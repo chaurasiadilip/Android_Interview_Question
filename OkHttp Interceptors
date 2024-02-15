@@ -2,6 +2,7 @@ OkHttp is a widely-used networking library in the Android ecosystem, known for i
 
 What is an OkHttp interceptor?
 
+
 An OkHttp interceptor is a middleware component that can intercept, modify, or observe network requests and responses made using the OkHttp library in Android applications.
 
 How does an interceptor work in OkHttp?
