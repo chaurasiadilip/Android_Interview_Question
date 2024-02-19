@@ -1,0 +1,150 @@
+What is Object-Oriented Programming (OOP)?
+Object-Oriented Programming (OOP) is a programming paradigm that organizes code into objects, which are instances of classes. OOP focuses on encapsulating data and behavior into objects, allowing for modularity, reusability, and easier maintenance of code. The key principles of OOP are encapsulation, inheritance, and polymorphism.
+What is an object?
+An object is an instance of a class. It represents a specific entity or concept in a program. Objects have state (data) and behavior (methods). They can be created based on a class blueprint and interact with each other by invoking methods or accessing properties.
+What is a class?
+A class is a blueprint or template that defines the properties (data) and behaviors (methods) that objects of that class will have. It acts as a blueprint for creating multiple objects with similar characteristics. Classes provide encapsulation and modularity by grouping related data and functions together.
+Can you inherit private members of a class?
+No, private members of a class are not directly accessible or inheritable by derived classes. Private members are only accessible within the class that declares them. Inheritance allows derived classes to access protected and public members of the base class, but not private members.
+What is Polymorphism?
+Polymorphism is the ability of objects of different classes to be treated as objects of a common superclass or interface. It allows a single interface to be implemented by multiple classes, each providing its own implementation. Polymorphism can be achieved through method overriding or method overloading.
+What is Encapsulation?
+Encapsulation is a concept in OOP that combines data and functions into a single unit called a class. It hides the internal state and implementation details of an object, providing access to them only through well-defined public interfaces (methods). Encapsulation helps in achieving data integrity, code reusability, and code organization.
+Why is the virtual keyword used in code?
+In object-oriented languages like C++, C#, or Java, the virtual keyword is used to declare a method that can be overridden in derived classes. It allows dynamic dispatch, where the actual method implementation to be executed is determined at runtime based on the object type. It enables polymorphism and is typically used in base classes when you expect different behavior from derived classes.
+Example in C#:
+public class Animal
+{
+    public virtual void MakeSound()
+    {
+        Console.WriteLine("Animal makes a sound");
+    }
+}
+
+public class Cat : Animal
+{
+    public override void MakeSound()
+    {
+        Console.WriteLine("Meow!");
+    }
+}
+
+Animal animal = new Cat();
+animal.MakeSound();  // Output: "Meow!"
+Explain the concept of a Constructor.
+A constructor is a special member method that is used to initialize objects of a class. It is called automatically when an object is created. Constructors have the same name as the class and do not have a return type. They can take parameters to initialize the object’s state. Constructors are useful for setting initial values, allocating memory, and performing any necessary setup tasks.
+Example in Java:
+public class Car {
+    private String brand;
+    private String model;
+
+    public Car(String brand, String model) {
+        this.brand = brand;
+        this.model = model;
+    }
+
+    public void displayInfo() {
+        System.out.println("Brand: " + brand);
+        System.out.println("Model: " + model);
+    }
+}
+
+Car car = new Car("Tesla", "Model S");
+car.displayInfo();  // Output: Brand: Tesla, Model: Model S
+What is the difference between procedural and object-oriented programming?
+Procedural programming is a programming paradigm where the program is divided into procedures or functions that manipulate data. It focuses on step-by-step instructions to solve a problem. On the other hand, object-oriented programming (OOP) organizes code around objects that encapsulate data and behavior. OOP emphasizes data abstraction, encapsulation, inheritance, and polymorphism to provide more modular and reusable code.
+What is the difference between a class and a structure?
+In most object-oriented programming languages, a class is a blueprint for creating objects. It defines the properties (data) and behaviors (methods) that objects of that class will possess. Classes support inheritance and are typically used for complex data structures.
+Structures (also called structs) are similar to classes but are typically used for simple data structures that group related data together. Structures are value types and are often used when you want lightweight objects that can be copied by value instead of by reference.
+What is the relationship between a class and an object?
+A class is a blueprint or template that describes the properties and behaviors of objects. It defines what an object will look like and what it can do. An object, on the other hand, is an instance of a class. It represents a specific entity or concept in memory that conforms to the structure and behavior defined by the class.
+Explain the basic features of OOPs.
+The basic features of Object-Oriented Programming (OOP) are:
+Encapsulation: Bundling data and methods into a single unit (class) and hiding internal details.
+Inheritance: Creating new classes (derived classes) from existing classes (base classes) to inherit their properties and behaviors.
+Polymorphism: The ability of objects of different types to be treated as objects of a common type, enabling code reuse and flexibility.
+Abstraction: Representing essential features without including the background details, focusing on what an object does rather than how it does it.
+What is the difference between an Interface and an Abstract Class?
+An interface is a contract that defines a set of method signatures. It cannot provide any implementation and is meant to be implemented by classes. A class can implement multiple interfaces. Interfaces are used to achieve multiple inheritances of behavior.
+An abstract class is a class that cannot be instantiated and may contain abstract methods (methods without implementation). It is meant to be subclassed, and subclasses are responsible for implementing the abstract methods. Abstract classes can also provide non-abstract methods with implementation. A class can extend only one abstract class.
+What is Polymorphism, what is it for, and how is it used?
+Polymorphism is the ability of objects of different classes to be treated as objects of a common superclass or interface. It allows code to be written that can work with objects of different types without needing to know the specific type at compile-time. Polymorphism is achieved through method overriding and method overloading.
+Method overriding:
+class Animal {
+    public void makeSound() {
+        System.out.println("Animal makes a sound");
+    }
+}
+
+class Cat extends Animal {
+    @Override
+    public void makeSound() {
+        System.out.println("Meow!");
+    }
+}
+
+Animal animal = new Cat();  // Polymorphism
+animal.makeSound();  // Output: "Meow!"
+Method overloading:
+class Calculator {
+    public int add(int a, int b) {
+        return a + b;
+    }
+
+    public int add(int a, int b, int c) {
+        return a + b + c;
+    }
+}
+
+Calculator calculator = new Calculator();
+calculator.add(1, 2);           // Output: 3
+calculator.add(1, 2, 3);        // Output: 6
+How can you prevent a class from overriding in Kotlin? In Kotlin, the final keyword is used to prevent a class from being inherited and overridden. By marking a class as final, you ensure that it cannot be subclassed.
+Example in Kotlin:
+final class MyClass {
+    // Class members
+}
+What are abstract classes?
+What are the distinct characteristics of an abstract class? Abstract classes are classes that cannot be instantiated and may contain abstract methods (methods without implementation). They are meant to be subclassed, and subclasses are responsible for implementing the abstract methods. Abstract classes can also provide non-abstract methods with implementation. Some distinct characteristics of an abstract class are:
+Abstract classes cannot be instantiated directly.
+Abstract classes may contain both abstract and non-abstract methods.
+Subclasses of an abstract class must either implement all abstract methods or be declared as abstract themselves.
+Abstract classes can provide a common base for multiple subclasses to share common behavior and attributes.
+How can you prevent your class from being inherited further?
+To prevent a class from being inherited further (in most object-oriented languages), you can mark the class as final or sealed (language-specific feature).
+In Java: Use the final keyword to mark the class as final.
+In C#: Use the sealed keyword to prevent further inheritance.
+Example in Java:
+final class FinalClass {
+    // Class members
+}
+What are the different ways a method can be overloaded?
+Methods can be overloaded in several ways:
+Different number of parameters: Methods with the same name but different numbers of parameters.
+Different parameter types: Methods with the same name but different types of parameters.
+Different order of parameters: Methods with the same name and types of parameters but in a different order.
+Different return types: Methods with the same name and parameter list but different return types (overloading not possible in Java based on return type alone).
+Is it possible for a class to inherit the constructor of its base class?
+Yes, in most object-oriented languages, a derived class can inherit the constructor(s) of its base class. The derived class can call the base class constructor using the super() keyword or an equivalent syntax specific to the language. By doing so, the derived class can reuse the initialization logic provided by the base class constructor.
+Example in Java:
+class Vehicle {
+    private String brand;
+
+    public Vehicle(String brand) {
+        this.brand = brand;
+    }
+}
+
+class Car extends Vehicle {
+    private String model;
+
+    public Car(String brand, String model) {
+        super(brand);  // Call base class constructor
+        this.model = model;
+    }
+}
+How is method overriding different from method overloading?
+Method overriding and method overloading are both mechanisms to achieve polymorphism, but they are different:
+Method overriding occurs when a derived class provides a different implementation of a method that is already defined in its base class. It involves redefining a method with the same name, same parameters (or covariant types), and the same return type (or a subtype) in the derived class.
+Method overloading occurs when a class has multiple methods with the same name but different parameter lists (different number, order, or types of parameters). It allows a class to have multiple methods with similar functionality but different ways of accepting input.
+Method overriding is about providing a different implementation of an inherited method in a subclass, whereas method overloading is about defining multiple methods with the same name but different parameters within a class.
