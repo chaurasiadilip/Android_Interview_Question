@@ -18,6 +18,7 @@ fun main() {
 }
 In the above example, the code inside myInlineFunction along with the lambda passed to it will be inlined wherever myInlineFunction is called. This means there won't be any function call overhead for myInlineFunction, and the lambda code will behave as if it was written directly inside the main function.
 However, it’s important to use inline functions judiciously. Inlining a large function or inlining functions too frequently can lead to increased compiled code size.
+
 What is Multidex in Android?
 In Android development, MultiDex refers to a process that allows an application to be compiled into multiple DEX (Dalvik Executable) files. This is particularly relevant and necessary when an app exceeds the limitations of a single DEX file.
 To understand MultiDex, it’s important to first understand the DEX file and its limitations:
