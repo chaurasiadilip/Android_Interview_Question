@@ -1,0 +1,187 @@
+What is an Activity?
+An Activity is a fundamental component in Android that represents a single screen with a user interface. It is responsible for handling user interactions, managing the lifecycle, and providing a visual representation of the application’s functionality.
+Activities are typically defined by extending the android.app.Activity class and overriding lifecycle methods such as onCreate(), onStart(), onResume(), etc.
+
+Explain in detail all Android Components.
+In Android, there are several components that make up the building blocks of an application. These components include:
+Activity: Represents a single screen with a user interface.
+Service: Runs in the background to perform long-running operations without a user interface.
+BroadcastReceiver: Listens for and responds to system-wide broadcast announcements.
+ContentProvider: Manages access to a structured set of data, often stored in a SQLite database.
+Fragment: Represents a modular section of an Activity that can be combined with other fragments to create a flexible UI.
+Intent: Represents an action to be performed, such as starting an activity, sending a broadcast, or initiating a service.
+View: Represents a UI component, such as a button or a text field, that can be displayed on the screen.
+Layout: Defines the structure and appearance of the user interface by arranging views and other layouts.
+Adapter: Connects a data source to a view, typically used in ListView, GridView, or RecyclerView.
+
+What is ADB and what is it used for?
+ADB is a command-line tool that comes with the Android SDK. It allows you to communicate with an Android device or emulator.
+ADB is used for various purposes, such as installing and debugging applications, transferring files, running shell commands, capturing screenshots, etc.
+Example usage: adb install <path_to_apk> to install an APK on a connected device or emulator.
+
+What is the difference between RecyclerView and ListView?
+RecyclerView is an improved version of ListView that provides more flexibility and performance. It uses a recycling mechanism to reuse and efficiently manage views as they scroll on and off the screen. It also allows for more advanced layouts and animations.
+ListView is an older view group that displays a list of scrollable items in a vertical or horizontal direction. It lacks the advanced features and performance optimizations provided by RecyclerView.
+
+What is the difference between RelativeLayout and LinearLayout?
+RelativeLayout is a layout manager in Android that arranges views relative to each other or relative to the parent layout. It allows you to position views based on rules such as aligning to the parent’s top, bottom, left, or right, aligning to other views, etc. It provides more flexibility in positioning views.
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Click Me"
+        android:layout_below="@+id/textView1"
+        android:layout_alignParentRight="true" />
+
+</RelativeLayout>
+LinearLayout is a layout manager that arranges views in a single row or column, either horizontally or vertically. It is useful when you want to stack views one after another.
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Click Me" />
+
+</LinearLayout>
+
+What is the difference between Bitmap and Drawable in Android?
+Bitmap is a representation of a bitmap image in Android. It represents a rectangular grid of pixels and can be created from various sources such as files, resources, or dynamically generated.
+Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.image);
+Drawable is a general abstraction for something that can be drawn on the screen. It represents any visual element that can be used as a background, image, shape, etc. It can be created from various sources such as images, XML drawables, or dynamically generated.
+Drawable drawable = getResources().getDrawable(R.drawable.image);
+
+What is the difference between Spannable and String?
+String is an immutable sequence of characters in Java. It represents a fixed set of characters and provides basic string manipulation operations. String objects are immutable, meaning that their values cannot be changed once created.
+String message = "Hello, World!";
+Spannable is an extension of the CharSequence interface that allows you to style or format a portion of text within a TextView. It provides methods to apply different types of spans (e.g., styling, color, clickable, etc.) to specific ranges of text.
+SpannableString spannableString = new SpannableString("Hello, World!");
+spannableString.setSpan(new StyleSpan(Typeface.BOLD), 0, 5, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+How does the Android build process work?
+The Android build process involves several steps, including compiling source code, packaging resources, and generating the final APK (Android application package) file.
+The build process is managed by the Gradle build system, which uses build scripts (build.gradle files) to define the project’s build configuration.
+The build process can be customized using Gradle tasks, which define the actions to be performed during the build, such as compiling Java code, merging resources, obfuscating code, etc.
+
+How to transfer data between Activities?
+Data can be transferred between activities using intents. You can pass data as extras in an intent using key-value pairs.
+Example: Sending data from Activity A to Activity B
+// In Activity A
+Intent intent = new Intent(this, ActivityB.class);
+intent.putExtra("key", "value");
+startActivity(intent);
+
+// In Activity B
+String data = getIntent().getStringExtra("key");
+
+What is a Fragment, and what are the best practices for using Fragments?
+Fragment is a modular section of an Activity that has its lifecycle, layout, and behavior. It allows for creating reusable UI components and better separation of concerns.
+Best practices for using fragments include:
+Using the support library’s Fragment class for broad compatibility.
+Using the FragmentManager to handle fragment transactions.
+Implementing the necessary lifecycle methods in the fragment.
+Using callbacks and interfaces to communicate between the fragment and the hosting activity.
+
+What methods are used to persist data in Android?
+There are several methods to persist data in Android, depending on the requirements and complexity of the data:
+Shared Preferences: Used to store small amounts of primitive data as key-value pairs.
+Internal Storage: Allows you to save private files to the device’s internal storage.
+External Storage: Provides access to a shared external storage space, such as an SD card.
+SQLite Database: Allows you to store structured data in a private database.
+Network Storage: Use APIs and protocols to store data on remote servers.
+
+What is ViewGroup and View, and what are the differences between them?
+ViewGroup is a special type of view that can contain other views (including other ViewGroups) and define their layout properties. Examples include LinearLayout, RelativeLayout, and FrameLayout.
+View is the basic building block of UI components in Android. It represents a rectangular area on the screen and provides the drawing and event-handling capabilities. Examples include TextView, Button, ImageView.
+
+What is Dalvik?
+Dalvik was the virtual machine (VM) used in older versions of Android (prior to Android 5.0). It was specifically designed for mobile devices with limited resources.
+Dalvik executed applications’ bytecode (.dex files), which were compiled from Java source code. It used just-in-time (JIT) compilation to convert bytecode into machine code at runtime for better performance.
+In newer versions of Android (starting from Android 5.0), the ART (Android Runtime) replaced Dalvik as the default runtime environment.
+
+What are activity lifecycles?
+Activity lifecycles represent the different states an activity can be in throughout its existence. The main lifecycle methods include:
+onCreate(): Called when the activity is being created.
+onStart(): Called when the activity becomes visible to the user.
+onResume(): Called when the activity starts interacting with the user.
+onPause(): Called when the activity is partially obscured by another activity.
+onStop(): Called when the activity is no longer visible to the user.
+onDestroy(): Called when the activity is being destroyed.
+By implementing these methods, you can manage the initialization, cleanup, and behavior of your activity.
+
+What is SharedPreferences, and why do we use it?
+SharedPreferences is a simple and lightweight mechanism to store and retrieve key-value pairs of primitive data types in Android.
+It is primarily used to store application settings, user preferences, and small amounts of data that need to persist across app sessions.
+SharedPreferences are stored as XML files in the app’s private storage, accessible only to the app itself.
+Example usage:
+SharedPreferences preferences = getSharedPreferences("my_prefs", Context.MODE_PRIVATE);
+SharedPreferences.Editor editor = preferences.edit();
+editor.putString("key", "value");
+editor.apply();
+
+String data = preferences.getString("key", "");
+
+How does the Android notification system work?
+The Android notification system allows apps to display informative and interactive messages to the user outside the app’s user interface.
+Notifications can be displayed in the status bar, as pop-up alerts, or on the lock screen.
+Notifications are created using the NotificationCompat.Builder class and can include various elements such as title, text, icon, actions, etc.
+They can also have different priority levels, vibration patterns, and sounds.
+To show a notification, you need to use the NotificationManager to issue the notification.
+
+What is an Intent in Android, and what are the types of intents? Explain with an example.
+An Intent is an abstract representation of an operation to be performed. It is used for communication between components (e.g., activities, services) in an Android application.
+There are two types of intents:
+Explicit Intents: Used to start a specific component (activity, service) within the same application or a different application.
+Intent intent = new Intent(context, MainActivity.class);
+startActivity(intent);
+Implicit Intents: Used to perform actions that can be handled by multiple components, allowing the system to determine the best component to handle the intent.
+Intent intent = new Intent(Intent.ACTION_SEND);
+intent.setType("text/plain");
+intent.putExtra(Intent.EXTRA_TEXT, "Hello, world!");
+startActivity(intent);
+
+What is a ContentProvider, and how do you use it?
+A ContentProvider is a component in Android that provides a standardized way to share data between different applications.
+It manages access to a structured set of data, typically stored in a SQLite database, and allows other apps to query, insert, update, and delete data through a common interface.
+ContentProviders are defined by implementing the android.content.ContentProvider class and overriding its methods to handle data operations.
+They can be used to share data across apps, enforce data access restrictions, and provide a consistent interface for data retrieval and manipulation.
+
+What is MVC in Android, and what is the difference between MVC and MVVM?
+MVC (Model-View-Controller) is a software architectural pattern commonly used in Android development.
+In MVC, the Model represents the data and business logic, the View represents the UI components, and the Controller handles the interaction between the Model and the View.
+The Model is responsible for managing and manipulating the data, while the View is responsible for displaying the data to the user.
+The Controller acts as an intermediary, handling user input, updating the Model, and updating the View accordingly.
+MVVM (Model-View-ViewModel) is a variation of MVC that introduces the ViewModel as an intermediary between the Model and the View, providing data-binding and a more reactive approach.
+
+
+How to handle OutOfMemory errors in Android?
+OutOfMemory errors can occur when an application exceeds the available memory limits, usually due to memory leaks or loading large amounts of data.
+To handle OutOfMemory errors, you can consider the following approaches:
+Optimize memory usage by avoiding unnecessary object allocations, recycling objects, and releasing resources promptly.
+Use memory-efficient data structures and algorithms.
+Load and process large data in smaller chunks, instead of loading everything at once.
+Implement caching mechanisms to reduce the need for repeated data loading.
+Use tools like the Android Profiler or LeakCanary to identify and fix memory leaks.
+Handle large data sets by using techniques like pagination or lazy loading.
+Optimize image loading by using libraries that provide memory caching and down sampling capabilities, such as Glide or Picasso.
