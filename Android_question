@@ -1,4 +1,4 @@
-What is an inline function in Kotlin?
+What is an inline function in Kotlin? 
 An inline function in Kotlin is a powerful feature that optimizes your code at compile time by reducing function call overhead. When you declare a function as inline in Kotlin, the compiler will replace the function call with the actual function code, thereby eliminating the overhead of a function call. This is particularly useful for higher-order functions, which take other functions as parameters or return them.
 Here’s how it works:
 Reduced Overhead: Instead of creating an anonymous class for a lambda passed to a higher-order function, the inline function along with the lambda code is directly inserted into the calling place (inlined), thereby reducing memory and runtime overhead.
