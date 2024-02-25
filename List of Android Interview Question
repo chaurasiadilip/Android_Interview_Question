@@ -1,0 +1,289 @@
+Android Basics:
+
+What is Android?
+Explain the Android architecture.
+Describe the Android application components.
+What is an Activity in Android?
+Explain the AndroidManifest.xml file.
+What is an Intent in Android?
+What are the different types of Intent?
+What is a Service in Android?
+What is a BroadcastReceiver in Android?
+What is a Content Provider in Android?
+What is an APK in Android?
+Explain the Android resource directory structure.
+What is Gradle in Android?
+Describe the Android emulator and Android Virtual Device (AVD).
+What is the Dalvik Virtual Machine (DVM)?
+Explain the difference between a Fragment and an Activity in Android.
+What is the Android Support Library (AndroidX)?
+How do you handle different screen sizes and resolutions in Android?
+User Interface (UI) Design:
+
+Explain the View and ViewGroup in Android.
+What is a Layout in Android?
+Describe LinearLayout, RelativeLayout, and ConstraintLayout in Android.
+What is the purpose of the Android XML layout files?
+Explain the use of dp, sp, px, and dip in Android.
+What is the purpose of a style in Android?
+Describe Material Design in Android.
+Activities and Intents:
+
+How do you create a new Activity in Android?
+What is the back stack of activities in Android?
+How do you pass data between activities using Intent?
+Explain the difference between startActivity() and startActivityForResult().
+What is the onActivityResult() method used for?
+How do you launch the phone’s camera from your app?
+Describe the Activity lifecycle methods in Android.
+What is the savedInstanceState used for in Android?
+Fragments:
+
+What is a Fragment in Android?
+How do you add a Fragment to an Activity?
+Explain the communication between Fragments.
+What is a FragmentTransaction in Android?
+User Interface (UI) Components:
+
+Describe TextView, EditText, and Button in Android.
+What is a RecyclerView, and how is it used?
+Explain the purpose of ListView and GridView.
+What is a ViewPager, and how does it work?
+Describe the purpose of AlertDialog and ProgressDialog.
+How do you create a custom view in Android?
+Data Storage:
+
+What is SharedPreferences in Android, and how is it used?
+Explain SQLite in Android.
+What is Room Persistence Library?
+Describe the use of Content Providers.
+How do you make network requests in Android?
+Permissions:
+
+What are Android permissions?
+How do you request permissions at runtime?
+Explain the purpose of dangerous and normal permissions in Android.
+Describe the PermissionDispatcher library.
+Networking:
+
+How do you perform network operations on the main thread in Android?
+What is AsyncTask, and how is it used?
+Describe Retrofit and OkHttp in Android.
+What is Volley, and when would you use it?
+Services:
+
+Explain the difference between Started Services and Bound Services.
+How do you create a background service in Android?
+Describe IntentService in Android.
+Broadcast Receivers:
+
+What is a BroadcastReceiver in Android?
+How do you register a BroadcastReceiver dynamically?
+Describe the order of BroadcastReceiver execution when multiple receivers are registered.
+Notifications:
+
+How do you create notifications in Android?
+Explain PendingIntent and Notification Channels.
+Localization:
+
+What is localization in Android?
+How do you support multiple languages in an Android app?
+Testing:
+
+Describe the different types of testing in Android.
+What is Espresso, and how is it used for UI testing?
+Explain JUnit and Mockito for unit testing.
+Debugging:
+
+How do you debug an Android application?
+What is Logcat in Android?
+Security:
+
+How do you store sensitive data securely in Android?
+Explain ProGuard and how it enhances app security.
+Background Processing:
+
+Describe WorkManager in Android.
+What is Firebase Cloud Messaging (FCM), and how is it used for push notifications?
+Explain the Android JobScheduler.
+App Distribution:
+
+What are the steps for publishing an app on the Google Play Store?
+Describe the process of creating a signed APK.
+Android Studio:
+
+What is Android Studio, and how do you install it?
+Explain the Android Studio layout and essential features.
+Describe the Gradle build system.
+Version Control:
+
+How do you use version control (e.g., Git) in Android development?
+Explain the purpose of a .gitignore file.
+Dependency Management:
+
+How do you add external libraries to your Android project?
+Describe the purpose of the build.gradle file.
+Performance Optimization:
+
+What are some common techniques for optimizing Android app performance?
+Explain the Android Systrace tool.
+Material Design:
+
+Describe the key principles and components of Material Design.
+How do you use Material Design components in Android?
+Background Tasks:
+
+How do you run background tasks efficiently in Android?
+Explain the Handler class in Android.
+Geolocation:
+
+How do you obtain the user’s location in Android?
+Describe the use of Google Maps in Android apps.
+Dependency Injection:
+
+What is Dependency Injection, and how is it implemented in Android?
+Explain Dagger 2 for Dependency Injection in Android.
+App Monetization:
+
+Describe different strategies for monetizing Android apps.
+Explain AdMob for integrating ads into Android apps.
+Publishing Updates:
+
+How do you release updates for your Android app?
+Describe the Android App Bundle (AAB) format.
+What is the Android App Bundle (AAB) and how does it differ from the APK?
+Android Development Process:
+
+Describe the typical Android app development process.
+Explain the importance of user interface (UI) design in Android development.
+What is Material Theming in Android, and how is it used?
+How do you handle user authentication in an Android app?
+User Interface (UI) Customization:
+
+Describe the purpose of a Custom View in Android.
+How do you create a custom Toolbar in Android?
+Explain the use of themes and styles in Android.
+What are XML drawables, and how are they used for UI customization?
+Navigation:
+
+How do you implement navigation between screens in Android?
+Explain the Android Navigation Component.
+What is deep linking in Android?
+Dependency Injection and Inversion of Control:
+
+Describe the concept of Dependency Injection (DI) in Android.
+What is Inversion of Control (IoC), and how is it related to DI?
+How do you use Hilt for Dependency Injection in Android?
+Database and Persistence:
+
+Explain Room Persistence Library in Android.
+Describe the use of LiveData and ViewModel in conjunction with databases.
+How do you perform database migrations in Android?
+Debugging and Profiling:
+
+What are some common debugging tools and techniques for Android development?
+Explain Android Profiler and its key features.
+How do you analyze and optimize app performance using Android Profiler?
+UI Testing:
+
+Describe UI testing in Android and the tools available for it.
+What is UI Automator, and how is it used for UI testing?
+Explain the Espresso testing framework for Android.
+Background Processing and Threading:
+
+How do you perform background tasks using WorkManager in Android?
+What is AsyncTask, and why is it considered outdated for background tasks?
+Explain the concept of multithreading and its importance in Android development.
+Bluetooth and Connectivity:
+
+How do you establish Bluetooth connections between devices in Android?
+Describe the use of Android’s Bluetooth API.
+What is Android’s Nearby Connections API, and how does it work?
+Camera and Media:
+
+How do you access and utilize the device’s camera in Android?
+Explain MediaStore and how it’s used for accessing media files.
+How can you record and play audio in Android?
+Firebase and Cloud Services:
+
+Describe Firebase and its role in Android app development.
+How do you implement Firebase Cloud Messaging (FCM) for push notifications?
+Explain Firebase Authentication and its benefits.
+Testing and Continuous Integration (CI):
+
+What is Continuous Integration (CI), and how does it benefit Android development?
+How can you set up CI/CD pipelines for Android apps using tools like Jenkins or Travis CI?
+Describe the benefits of unit testing and how it’s implemented in Android.
+Memory Management and Optimization:
+
+What is memory management in Android, and why is it crucial?
+Explain the purpose of the Android Garbage Collector.
+How do you optimize memory usage in Android apps?
+Material Design Components:
+
+Describe key Material Design components such as BottomAppBar and Chip.
+What are Material Design guidelines for animations and transitions?
+How can you create custom animations in Android apps?
+Accessibility and Inclusivity:
+
+Explain the importance of accessibility features in Android.
+How can you make Android apps more accessible to users with disabilities?
+What is TalkBack, and how does it assist users with visual impairments?
+Internationalization and Localization:
+
+How do you support multiple languages and regions in Android apps?
+Describe the use of resource qualifiers for localization.
+What is the purpose of the res/values and res/values-xx directories?
+Security:
+
+What is ProGuard, and how does it enhance Android app security?
+Explain the Android Security Model, including app sandboxing and permissions.
+How do you encrypt sensitive data stored in Android apps?
+Data Storage and Retrieval:
+
+Describe the use of SharedPreferences for storing small amounts of data.
+What is the Repository pattern, and how can it be applied to data storage in Android?
+How do you implement data caching in Android apps?
+APIs and Services:
+
+Explain the use of Android’s Location API for obtaining device location.
+How can you integrate third-party REST APIs into Android apps?
+Describe Android Services and use cases for background tasks.
+What is the Google Maps API, and how can it be integrated into Android apps?
+User Authentication and Authorization:
+
+How do you implement OAuth 2.0 authentication in Android apps?
+What is the Android AccountManager, and how is it used for user authentication?
+Explain the concept of Single Sign-On (SSO) in Android.
+Notifications and Messaging:
+
+Describe Android’s Notification system and different notification types.
+How can you implement in-app messaging and chat functionality?
+Explain Firebase Cloud Messaging (FCM) topics and how they work.
+Android Jetpack Components:
+
+What are Android Jetpack’s Navigation, Paging, and WorkManager components?
+Describe the purpose and use cases of Android Jetpack’s CameraX library.
+How do you implement a dark theme in Android using Jetpack components?
+App Distribution and Monetization:
+
+Describe the process of publishing an Android app on the Google Play Store.
+What are Android App Bundles, and how do they optimize app distribution?
+Explain different monetization strategies for Android apps, such as in-app purchases and ads.
+App Versioning and Updates:
+
+How do you handle app versioning and updates in Android?
+Describe the use of the AppCompat library for maintaining backward compatibility.
+Build and Gradle:
+
+What is Gradle in the context of Android app development?
+Explain the purpose of build types and flavors in Gradle.
+How do you configure ProGuard rules in a Gradle build?
+Augmented Reality (AR) and Virtual Reality (VR):
+
+Describe Android’s ARCore and its role in augmented reality applications.
+What is Google Cardboard, and how can you create VR experiences on Android?
+Gesture Recognition and Interaction:
+
+How can you implement touch gestures like swipe and pinch-to-zoom in Android apps?
+Explain the use of GestureDetector for recognizing gestures.
