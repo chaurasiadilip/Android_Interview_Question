@@ -1,0 +1,280 @@
+Before implementing an API, there are several basic concepts that developers should be familiar with to ensure successful integration and usage. These concepts include:
+HTTP basics:
+— Understand HTTP methods (GET, POST, PUT, DELETE).
+— Familiarize with status codes and headers.
+RESTful API principles:
+— Recognize resource-based interactions.
+— Understand statelessness and uniform interface.
+API Endpoints:
+— Identify and utilize specific URLs representing resources.
+Request and Response Formats:
+— Construct HTTP requests.
+— Parse HTTP responses in formats like JSON or XML.
+Authentication and Authorization:
+— Know authentication methods (API keys, OAuth tokens).
+— Understand authorization concepts like RBAC and scopes.
+Rate Limiting:
+— Be aware of and handle rate limit policies.
+Error Handling:
+— Interpret API error codes.
+— Provide informative error messages to users.
+API Documentation:
+— Thoroughly read and understand available documentation.
+Testing:
+— Perform unit, integration, and end-to-end tests for API interactions.
+Security:
+— Protect sensitive data.
+— Validate input parameters.
+— Prevent common vulnerabilities.
+— Encrypt communication with HTTPS.
+Understanding these concepts is essential for effective API implementation and integration into applications.Here’s a list of 50 free APIs:
+💥1. OpenWeatherMap API
+Purpose: Provides weather data, including current weather, forecasts, and historical data, for any location in the world.
+Weather API
+Explore OpenWeather's vast range of weather APIs including the versatile One Call API 3.0. Ideal for both beginners and…
+openweathermap.org
+💥2. Google Maps Platform API
+Purpose: Allows developers to integrate Google Maps into their applications, providing functionalities like location-based services, mapping, and navigation.
+Google Maps Platform | Google for Developers
+Google Maps Platform descriptions
+developers.google.com
+💥3. Twitter API
+Purpose: Allows developers to access Twitter’s data and functionalities, including tweets, user profiles, trends, and more.
+Documentation Home
+Guides and reference materials to help you get started, integrate, optimize, and troubleshoot your use of the Twitter…
+developer.twitter.com
+💥4. Facebook Graph API
+Purpose: Provides access to Facebook’s social graph, allowing developers to interact with user profiles, posts, events, and more.
+Graph API - Documentation - Meta for Developers
+The Graph API allows you to read and write data to and from the Facebook social graph.
+developers.facebook.com
+💥5. GitHub API
+Purpose: Enables developers to access GitHub’s repositories, users, issues, and other resources, facilitating integration with Git repositories.
+GitHub REST API documentation - GitHub Docs
+Create integrations, retrieve data, and automate your workflows with the GitHub REST API.
+docs.github.com
+💥6. Stripe API
+Purpose: Offers a set of APIs for processing online payments, managing subscriptions, and handling other aspects of e-commerce.
+API Reference
+Complete reference documentation for the Stripe API. Includes code snippets and examples for our Python, Java, PHP…
+stripe.com
+💥7. Twilio API
+Purpose: Allows developers to integrate voice, video, and messaging functionalities into their applications, facilitating communication features.
+How to Use Our REST APIs
+Twilio's REST APIs power a robust platform for programmatically adding communications to your applications. Learn about…
+www.twilio.com
+💥8. YouTube Data API
+Purpose: Provides programmatic access to YouTube’s video and channel data, enabling developers to integrate YouTube content into their apps.
+YouTube Data API | Google for Developers
+Add YouTube features to your application, including the ability to upload videos, create and manage playlists, and…
+developers.google.com
+💥9. OpenStreetMap API
+Purpose: Offers open-source mapping data and APIs, providing similar functionalities to Google Maps but with an open data approach.
+API
+OpenStreetMap has an editing API for fetching and saving raw geodata from/to the OpenStreetMap database - this is the…
+wiki.openstreetmap.org
+💥10. NASA API
+Purpose: Provides access to a wide range of NASA’s data, including images, videos, astronomy data, and space missions information.
+NASA Open APIs
+Edit description
+api.nasa.gov
+💥11. Poké API
+Purpose: Provides Pokémon data including information on Pokémon species, abilities, moves, types, and more.
+PokéAPI
+An open RESTful API for Pokémon data
+pokeapi.co
+💥12. Joke API
+Purpose: Offers a collection of jokes in various categories, including programming, general, and puns.
+JokeAPI
+JokeAPI is a RESTful API that serves jokes from many categories while also offering a lot of filtering methods
+jokeapi.dev
+💥13. Open Trivia Database
+Purpose: Provides a collection of trivia questions and answers on various topics, including entertainment, science, sports, and more.
+Open Trivia DB
+Free to use, user-contributed trivia question database.
+opentdb.com
+💥14. Chuck Norris Jokes API
+Purpose: Delivers a selection of Chuck Norris jokes and facts.
+Chuck Norris Jokes Api
+chucknorris.io is a free JSON API for hand curated Chuck Norris facts. Read more Subscribe for new Chuck Facts Retrieve…
+api.chucknorris.io
+💥15. Dog CEO’s Dog API
+Purpose: Offers random pictures of dogs in various breeds.
+The Dog API - Dog as a Service
+Get free access to over 60K dog images and breed information. A fully protected and authenticated API to instantly fill…
+thedogapi.com
+💥16. Cat Facts API
+Purpose: Provides random facts about cats.
+cat-facts
+Daily cat facts! 🐱
+alexwohlbruck.github.io
+💥17. REST Countries API
+Purpose: Offers information about countries including name, population, capital, currencies, languages, and more.
+REST Countries
+Get information about countries via a RESTful API
+restcountries.com
+💥18. COVID-19 API
+Purpose: Provides data related to the COVID-19 pandemic including cases, deaths, and vaccinations.
+COVID19 API
+COVID19 API was brought to you by technology consultancy, Daemon. Taking a people-centric approach to digital…
+covid19api.com
+💥19. The Breaking Bad API
+Purpose: Offers information about the Breaking Bad TV series including characters, episodes, and quotes.
+API Documentation
+The idea was to create a simple platform for DEA agents, to manage information about characters from the Breaking…
+drangovski.github.io
+💥20. The Rick and Morty API
+Purpose: Provides data about the Rick and Morty TV show including characters, episodes, and locations.
+The Rick and Morty API
+The Rick and Morty API is a REST and GraphQL API based on the television show Rick and Morty
+rickandmortyapi.com
+💥21. Dad Jokes API
+Purpose: Offers a collection of dad jokes and puns.
+icanhazdadjoke
+The largest collection of dad jokes on the internet
+icanhazdadjoke.com
+💥22. Advice Slip API
+Purpose: Provides random pieces of advice.
+Advice Slip JSON API
+The Advice Slip JSON API is provided for free. 😎 It currently gives out over 10 million pieces of advice every year…
+api.adviceslip.com
+💥23. Bacon Ipsum API
+Purpose: Generates placeholder text with a bacon-themed twist.
+JSON API - Bacon Ipsum
+JSON API for returning meaty lorem ipsum filler text
+baconipsum.com
+💥24. Lorem Ipsum Generator API
+Purpose: Generates placeholder text commonly used in design and typography.
+JSONPlaceholder
+JSON} Placeholder Powered by JSON Server + LowDB. Tested with XV. Serving ~2 billion requests each month…
+jsonplaceholder.typicode.com
+💥25. SpaceX API
+Purpose: Provides data about SpaceX launches, rockets, capsules, and more.
+GitHub - r-spacex/SpaceX-API: :rocket: Open Source REST API for SpaceX launch, rocket, core…
+rocket: Open Source REST API for SpaceX launch, rocket, core, capsule, starlink, launchpad, and landing pad data. …
+github.com
+💥26. Dictionary API
+Purpose: Allows you to search for a english word and to get definition of English word.
+Free Dictionary API
+Usage : The basic syntax of a URL request to the API is shown below: https://api.dictionaryapi.dev/api/v2/entries/en/…
+dictionaryapi.dev
+💥27. Cocktail DB API
+Purpose: Provides information about cocktails, including ingredients, recipes, and images.
+Free Cocktail API | TheCocktailDB.com
+Free Recipe API Support The API and site will always remain free to access at its basic level. If you love our service…
+www.thecocktaildb.com
+💥28. Makeup API
+Purpose: Offers access to makeup products.
+Makeup API
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam cum illum soluta reprehenderit earum totam…
+makeup-api.herokuapp.com
+💥29. Randomuser.me API
+Purpose: Generates random user data including names, email addresses, and profile pictures.
+Random User Generator
+Random user generator is a FREE API for generating placeholder user information. Get profile photos, names, and more…
+randomuser.me
+💥30. Giphy API
+Purpose: Provides access to a vast library of animated GIFs covering a wide range of categories and topics.
+Docs | GIPHY Developers
+The GIPHY Developer Portal is how you integrate the world's best GIF API into your business, app or project.
+developers.giphy.com
+💥31. Google Books API
+Purpose: Allows access to Google’s vast collection of books, providing information about titles, authors, reviews, and more.
+Google Books APIs | Google for Developers
+Learn to use the Google Books API so your app can search text and retrieve book information.
+developers.google.com
+💥32. The World Bank API
+Purpose: Offers world information.
+Developer Information: Overview
+Note: version 2 of the Indicators API was released several years ago, and version 1 was officially retired in November…
+datahelpdesk.worldbank.org
+💥33. The City Bikes API
+Purpose: Provides city bikes around the world.
+CityBikes API Documentation
+Welcome to the CityBikes API documentation page. This is a brief explanation on how to use CityBikes data.
+api.citybik.es
+💥34. Exchange Rates API
+Purpose: Provides current and historical foreign exchange rates for currencies around the world.
+Exchange Rates API
+Website description.
+exchangeratesapi.io
+💥35. RESTful Countries API
+Purpose: Offers information about countries including name, population, capital, currencies, languages, and more.
+Restful Countries - Get countries data via restful api
+Get countries information like states, covid19 summary, presidents, flag, population and others via Restful Api.
+restfulcountries.com
+💥36. Faker API
+Purpose: Generate Fake data by API requests especially usefull for testing purpose.
+Faker Api - Generate Fake data by API requests
+Generate fake data and get by REST API requests.
+fakerapi.it
+💥37. Harry Potter Characters API
+Purpose: Provides access to all Harry Potter Characters.
+HP-API // The Harry Potter API
+Edit description
+hp-api.onrender.com
+💥38. Recipe Puppy API
+Purpose: Allows access to a large collection of recipes from various sources on the internet.
+Recipe Puppy | www.recipepuppy.com
+Recipe Puppy, the innovative recipe search engine, has become a popular tool for food enthusiasts seeking culinary…
+www.recipepuppy.com
+💥39. The Astrology API
+Purpose: Get free daily horoscope.
+aztro API
+aztro is a Developer API that allows you to integrate Horoscope and Astrology information to your project. aztro is…
+aztro.sameerkumar.website
+💥40. Satellite API
+Purpose: Provides information of earth orbiting satellites.
+TLE API
+TLE API provides up to date NORAD two line element sets for number of Earth orbiting satellites
+tle.ivanstanojevic.me
+💥41. Open Brewery DB API
+Purpose: Offers information about breweries including location, beer styles, and more.
+Open Brewery DB
+A worldwide open-source brewery dataset and API
+www.openbrewerydb.org
+💥42. MealDB API
+Purpose: Provides information about meals including recipes, ingredients, and categories.
+Free Meal API | TheMealDB.com
+Free Recipe API Support The API and site will always remain free at point of access. If you love our service and want…
+www.themealdb.com
+💥43. Numbers API
+Purpose: Offers facts about numbers.
+Numbers API
+An API for interesting facts about numbers.
+numbersapi.com
+💥44. Lorem Picsum API
+Purpose: Provides random images from unsplash.
+Lorem Picsum
+Lorem Ipsum... but for photos
+picsum.photos
+💥45. Zen Quotes API
+Purpose: Offers large collection of Zen Quotes.
+Zen Quotes API | Daily Inspirational Quotes
+ZenQuotes.io features inspiration from the world's most important philosiphers, inventors, scientists, religious…
+zenquotes.io
+💥46. Archive API
+Purpose: Archive.org, the flagship service of the Internet Archive, is a public digital archive which makes tens of millions of items (texts and books, public domain movies, television shows, live concerts, and more) accessible to the public, free of charge.
+Overview of Services
+This describes the resources that make up the official Archive.org API v1.
+archive.readme.io
+💥47. Flickr API
+Purpose: Allows access to Flickr’s vast collection of photos, albums, and groups.
+Flickr Services
+The safest and most inclusive global community of photography enthusiasts. The best place for inspiration, connection…
+www.flickr.com
+💥48. OpenCage Geocoding API
+Purpose: Offers forward and reverse geocoding services, converting between geographic coordinates and addresses.
+OpenCage Geocoding API Documentation
+Full documentation and reference for the OpenCage Geocoding API for forward and reverse geocoding: formats, parameters…
+opencagedata.com
+💥49. Google Fonts API
+Purpose: Allows access to Google’s library of web fonts, enabling developers to easily integrate custom fonts into their websites or applications.
+Google Fonts | Google for Developers
+High-quality fonts to use on your web site.
+developers.google.com
+💥50. MediaWiki Encyclopedia API
+Purpose: The MediaWiki Action API is a web service that allows access to some wiki features like authentication, page operations, and search.
+API:Main page - MediaWiki
+This page provides an overview of the MediaWiki Action API, represented by the api.php endpoint. This page is intended…
+www.mediawiki.org
