@@ -1,0 +1,529 @@
+Kotlin interfaces are a fundamental part of the language and are used extensively in many Kotlin projects. In this blog, we’ll cover all the important aspects of Kotlin interfaces, including their syntax, uses, and examples.
+
+Kotlin Interfaces
+In Kotlin, an interface is a type that defines a set of method signatures that a class can implement. An interface can contain abstract methods, default method implementations, and properties. Interfaces are used to define a contract that a class must follow in order to be considered an implementation of the interface.
+
+Syntax
+An interface in Kotlin is declared using the interface keyword, followed by the name of the interface and its body enclosed in curly braces. Here's an example of a simple interface declaration:
+
+interface MyInterface {
+    fun doSomething()
+}
+In this example, the MyInterface interface contains a single method signature, doSomething(). This method is abstract, meaning that it does not have a method body and must be implemented by any class that implements the MyInterface interface.
+
+Interfaces can also include default method implementations, which are method implementations that are provided in the interface itself. Here’s an example
+
+interface MyInterface {
+    fun doSomething()
+    fun doSomethingElse() {
+        println("Doing something else")
+    }
+}
+In this example, the MyInterface interface contains two method signatures, doSomething() and doSomethingElse(). The doSomethingElse() method has a default implementation that simply prints a message to the console.
+
+Kotlin interface properties
+In Kotlin, interface properties can be declared using the same syntax as regular properties:
+
+interface MyInterface {
+    val property1: Int
+    var property2: String
+}
+Here, property1 is a read-only property, and property2 is a mutable property.
+
+In Java, interface properties are not directly supported. However, you can define getter and setter methods that behave like properties:
+
+interface MyInterface {
+    int getProperty1();
+    void setProperty1(int value);
+    String getProperty2();
+    void setProperty2(String value);
+}
+Here, getProperty1() and getProperty2() are getter methods, and setProperty1(int value) and setProperty2(String value) are setter methods.
+
+With Kotlin interface properties, you can provide default implementations for them as well:
+
+interface MyInterface {
+    val property1: Int
+        get() = 42
+
+    var property2: String
+        get() = "default"
+        set(value) {
+            println("Setting property2 to $value")
+        }
+}
+Here, property1 has a default value of 42, and property2 has a default value of "default". The set() method of property2 is overridden to print a message whenever the property is set.
+
+Extending vs Implementing
+In Kotlin, both classes and interfaces play a crucial role in object-oriented programming. A class is a blueprint or a template for creating objects, whereas an interface is a collection of abstract methods and properties. An interface can be seen as a contract that a class has to fulfill by implementing all of its abstract methods and properties.
+
+One of the key differences between a class and an interface is that a class can extend only one other class at a time, while an interface can extend any number of other interfaces. This means that an interface can inherit properties and methods from multiple other interfaces.
+
+In Java, we have the extends and the implements keywords for extending a class and implementing interfaces. However, on Kotlin’s side, we don’t have these keywords. Kotlin uses the colon character “:” to indicate both inheritance (extend) and interfaces implementation.
+
+For example, suppose we have two interfaces A and B, and we want to create a new interface C that extends both A and B. In Kotlin, we can achieve this using the following syntax:
+
+interface A {
+    fun foo()
+}
+
+interface B {
+    fun bar()
+}
+
+interface C : A, B {
+    fun baz()
+}
+Here, the interface C extends both A and B, and also declares its own method baz.
+
+On the other hand, a class can extend one other class and implement any number of interfaces at the same time. This means that a class can inherit properties and methods from another class, as well as fulfill the contracts of multiple interfaces.
+
+For example, suppose we have a class D that extends another class E and implements two interfaces F and G. In Kotlin, we can achieve this using the following syntax:
+
+open class E {
+    fun qux()
+}
+
+interface F {
+    fun baz()
+}
+
+interface G {
+    fun quux()
+}
+
+class D : E(), F, G {
+    override fun baz() { /* implementation */ }
+    override fun quux() { /* implementation */ }
+}
+Here, the class D extends the class E and implements both interfaces F and G, and also provides the implementation for their respective abstract methods baz and quux.
+
+It is important to note that an interface cannot implement another interface, it can only extend other interfaces. Additionally, when we define an interface that extends another interface, we inherit all of the properties and methods of the parent interface, and we can also define our own abstract methods and properties.
+
+Overall, the difference between extending and implementing is that extending is used to inherit properties and methods from other classes or interfaces while implementing is used to fulfill the contract of an interface by providing implementations for its abstract methods and properties.
+
+Resolving overriding conflicts
+When a class implements multiple interfaces that have a property and function with the same name and signature, it may cause a conflict. This is because the class must provide an implementation for that function, but it’s unclear which interface’s implementation should be used. To resolve such conflicts, Kotlin provides below options:
+
+Explicitly specify which implementation to use using the super keyword and the angle brackets notation (<>), which denotes the interface name. For example:
+interface A {
+    fun foo() { println("A") }
+}
+
+interface B {
+    fun foo() { println("B") }
+}
+
+class C : A, B {
+    override fun foo() {
+        super<A>.foo() // Use implementation of A
+        super<B>.foo() // Use implementation of B
+    }
+}
+2. Define a new implementation that satisfies the requirements of both interfaces. For example:
+
+interface A {
+    fun foo() { println("A") }
+}
+
+interface B {
+    fun foo() { println("B") }
+}
+
+class C : A, B {
+    override fun foo() { println("C") }
+}
+In this case, C defines a new implementation for the foo() function that satisfies the requirements of both interfaces. When foo() is called on an instance of C, the C implementation will be used.
+
+3. If a class implements two interfaces that define a property with the same name, there will be a naming conflict. For example:
+
+interface A {
+    val value: Int
+}
+
+interface B {
+    val value: Int
+}
+
+class MyClass : A, B {
+    override val value: Int = 42
+}
+In the above code, MyClass implements both A and B, which define a variable named value. To resolve this naming conflict, the value property in MyClass must be overridden with the override keyword, and a value must be provided.
+
+If you want to access the variable from both interfaces, you can use the interface name to qualify the variable:
+
+class MyClass : A, B {
+    override val value: Int = 42
+    
+    fun printValues() {
+        println("A.value = ${A.super.value}") // prints "A.value = 42"
+        println("B.value = ${B.super.value}") // prints "B.value = 42"
+    }
+}
+In the above code, A.super.value and B.super.value are used to access the value property from the respective interfaces.
+
+Default implementation
+As we have already seen above, interfaces can also have default implementations for their methods. This means that the implementation of a method can be provided in the interface itself. Any class implementing that interface can then choose to use the default implementation or override it with its own implementation.
+
+interface Vehicle {
+    fun start()
+    fun stop() {
+        println("Vehicle stopped")
+    }
+}
+
+class Car : Vehicle {
+    override fun start() {
+        println("Car started")
+    }
+
+    // stop() implementation inherited from Vehicle interface
+}
+
+fun main() {
+    val car = Car()
+    car.start()  // output: "Car started"
+    car.stop()   // output: "Vehicle stopped"
+}
+In the above example, the Vehicle interface has a default implementation for the stop() method. The Car class implements the Vehicle interface and overrides the start() method. Since it does not override the stop() method, it uses the default implementation provided by the interface.
+
+Delegation
+Kotlin interfaces also support delegation. This means that an interface can delegate its method calls to another object. The by keyword is used to delegate method calls to another object.
+
+interface Vehicle {
+    fun start()
+    fun stop()
+}
+
+class Car : Vehicle {
+    override fun start() {
+        println("Car started")
+    }
+
+    override fun stop() {
+        println("Car stopped")
+    }
+}
+
+class Driver(private val vehicle: Vehicle) : Vehicle by vehicle
+
+fun main() {
+    val car = Car()
+    val driver = Driver(car)
+
+    driver.start()  // output: "Car started"
+    driver.stop()   // output: "Car stopped"
+}
+In the above example, the Driver class implements the Vehicle interface by delegating its method calls to the vehicle object that is passed to it as a constructor parameter. The by keyword is used to delegate the method calls.
+
+SAM conversions
+Kotlin interfaces can be used for single abstract method (SAM) conversions. This means that a lambda expression or a function reference can be used wherever an interface with a single abstract method is expected.
+
+interface OnClickListener {
+    fun onClick()
+}
+
+class Button {
+    fun setOnClickListener(listener: OnClickListener) {
+        // do something with listener
+    }
+}
+
+fun main() {
+    val button = Button()
+
+    // SAM conversion with lambda expression
+    button.setOnClickListener {
+        println("Button clicked")
+    }
+
+    // SAM conversion with function reference
+    button.setOnClickListener(::handleClick)
+}
+
+fun handleClick() {
+    println("Button clicked")
+}
+In the above example, the OnClickListener interface has a single abstract method onClick(). The Button class has a method setOnClickListener() that expects an object of the OnClickListener interface. The main() function demonstrates how a lambda expression and a function reference can be used for SAM conversions.
+
+Uses
+Kotlin interfaces have a variety of uses, including:
+
+1. Defining APIs
+One of the primary uses of Kotlin interfaces is defining APIs. By defining an interface, you can provide a contract for how your code should be used, without providing any implementation details.
+
+For example, imagine you’re building a library that performs some complex calculations. You might define an interface that provides a simple API for performing those calculations:
+
+interface Calculator {
+    fun add(a: Int, b: Int): Int
+    fun subtract(a: Int, b: Int): Int
+    fun multiply(a: Int, b: Int): Int
+    fun divide(a: Int, b: Int): Int
+}
+In this example, we define a Calculator interface with four functions: add(), subtract(), multiply(), and divide(). This interface provides a simple API for performing arithmetic operations.
+
+2. Enforcing Contracts
+Another use of Kotlin interfaces is to enforce contracts between different parts of your code. By defining an interface, you can ensure that different parts of your code are compatible with each other.
+
+For example, imagine you’re building an app that allows users to log in. You might define an interface that represents a user session:
+
+interface UserSession {
+    val isLoggedIn: Boolean
+    val user: User?
+
+    fun login(username: String, password: String): Boolean
+    fun logout()
+}
+In this example, we define a UserSession interface with several properties and functions. This interface enforces a contract between different parts of your code that need to work with user sessions.
+
+3. Polymorphism
+A key feature of Kotlin interfaces is polymorphism. By defining an interface, you can create code that can work with objects of different types, as long as they implement the same interface.
+
+For example, imagine you’re building a game that has several different types of enemies. You might define an interface that represents an enemy:
+
+interface Enemy {
+    fun attack()
+    fun takeDamage(damage: Int)
+}
+In this example, we define an Enemy interface with two functions: attack() and takeDamage(). This interface allows us to write code that can work with any type of enemy, as long as it implements the Enemy interface.
+
+Examples
+Let’s look at a few more examples of Kotlin interfaces in action.
+
+1. Defining a callback interface
+One common use of interfaces is defining callback functions. Here’s an example:
+
+interface OnItemClickListener {
+    fun onItemClick(position: Int)
+}
+
+class MyAdapter(private val listener: OnItemClickListener) : RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
+
+    inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+
+        init {
+            itemView.setOnClickListener(this)
+        }
+
+        override fun onClick(v: View?) {
+            listener.onItemClick(adapterPosition)
+        }
+    }
+}
+In this example, we have defined an OnItemClickListener interface with a single function onItemClick(). The MyAdapter class takes an instance of this interface as a constructor parameter and uses it to handle click events in its view holder.
+
+2. Implementing multiple interfaces
+Kotlin interfaces can be implemented by a single class, allowing for multiple types of behavior to be encapsulated in one object. Here’s an example:
+
+interface Flyable {
+    fun fly()
+}
+
+interface Swimmable {
+    fun swim()
+}
+
+class Duck : Flyable, Swimmable {
+
+    override fun fly() {
+        // Implement flying behavior for duck
+    }
+
+    override fun swim() {
+        // Implement swimming behavior for duck
+    }
+}
+In this example, we have defined two interfaces Flyable and Swimmable, each with a single function. The Duck class implements both interfaces, allowing it to exhibit both flying and swimming behavior.
+
+3. Using interfaces to define contracts
+In Kotlin, interfaces can be used to define contracts that classes must adhere to. This allows for more flexible code and promotes loose coupling. Here’s an example:
+
+interface PaymentProvider {
+    fun processPayment(amount: Double)
+}
+
+class CreditCardPaymentProvider : PaymentProvider {
+
+    override fun processPayment(amount: Double) {
+        // Implement payment processing using a credit card
+    }
+}
+
+class PayPalPaymentProvider : PaymentProvider {
+
+    override fun processPayment(amount: Double) {
+        // Implement payment processing using PayPal
+    }
+}
+
+class ShoppingCart(private val paymentProvider: PaymentProvider) {
+
+    fun checkout(amount: Double) {
+        paymentProvider.processPayment(amount)
+    }
+}
+In this example, we have defined a PaymentProvider interface with a single function processPayment(). The CreditCardPaymentProvider and PayPalPaymentProvider classes both implement this interface to provide payment processing functionality.
+
+The ShoppingCart class takes an instance of PaymentProvider as a constructor parameter and uses it to process payments in its checkout() function. This allows for different payment providers to be used interchangeably, as long as they conform to the PaymentProvider contract.
+
+Kotlin interfaces in Android development
+Here are some real-world examples of Kotlin interfaces in Android development.
+
+1. Network Callbacks
+One of the most common uses of interfaces in Android development is for handling callbacks from network operations, such as HTTP requests. For example, you might define a NetworkCallback interface with methods for handling success and error responses, which you can then implement in a class to handle network events. Here's an example using the Retrofit library:
+
+interface NetworkCallback {
+    fun onSuccess(response: MyResponse)
+    fun onError(error: Throwable)
+}
+
+class MyNetworkCallback : NetworkCallback {
+    override fun onSuccess(response: MyResponse) {
+        // handle successful response
+    }
+
+    override fun onError(error: Throwable) {
+        // handle error response
+    }
+}
+
+// make a network request
+val retrofit = Retrofit.Builder()
+    .baseUrl("https://api.example.com")
+    .build()
+
+val service = retrofit.create(MyService::class.java)
+val callback = MyNetworkCallback()
+
+service.getData().enqueue(object : Callback<MyResponse> {
+    override fun onResponse(call: Call<MyResponse>, response: Response<MyResponse>) {
+        callback.onSuccess(response.body())
+    }
+
+    override fun onFailure(call: Call<MyResponse>, t: Throwable) {
+        callback.onError(t)
+    }
+})
+2. Custom Views
+Interfaces can also be useful when defining custom views in Android. For example, you might define a CustomViewListener interface with methods for handling user interactions with your custom view, which you can then implement in a class to customize the behavior of your view. Here's an example:
+
+interface CustomViewListener {
+    fun onItemSelected(item: MyItem)
+}
+
+class MyCustomView(context: Context, attrs: AttributeSet) : View(context, attrs) {
+    var listener: CustomViewListener? = null
+
+    // handle user interaction with custom view
+    private fun handleItemClick(item: MyItem) {
+        listener?.onItemSelected(item)
+    }
+}
+
+// use the custom view in an activity
+val myCustomView = findViewById<MyCustomView>(R.id.my_custom_view)
+val listener = object : CustomViewListener {
+    override fun onItemSelected(item: MyItem) {
+        // handle item selection event
+    }
+}
+
+myCustomView.listener = listener
+In each of these examples, interfaces are used to define a contract between different components of the application, allowing for loose coupling and greater flexibility in implementation. By using interfaces, you can write more modular and reusable code in your Android applications.
+
+Hidden facts about Kotlin interface
+1. Kotlin Interface contains companian objects
+One hidden fact about Kotlin interfaces is that they can also contain companion objects. A companion object is an object that is associated with a class or an interface and can be used to define static methods or properties. When defined inside an interface, the companion object is called the companion object of the interface.
+
+interface MyInterface {
+    companion object {
+        fun myFunction() {
+            println("This is a function inside the companion object of MyInterface")
+        }
+    }
+}
+
+fun main() {
+    MyInterface.myFunction()
+}
+In this example, we define a companion object inside the MyInterface interface, which contains a single function called myFunction(). We can call this function from outside the interface by using the name of the interface followed by the name of the companion object and the function.
+
+Companion objects can be useful for providing a way to create instances of the interface, similar to static factory methods in Java. They can also be used to group related functions and constants that are specific to the interface.
+
+It is important to note that, like other members of an interface, the companion object can be implemented by classes that implement the interface. If multiple interfaces contain companion objects with the same name, you must provide an explicit implementation for the conflicting members.
+
+interface A {
+    companion object {
+        fun foo() = println("A companion")
+    }
+}
+
+interface B {
+    companion object {
+        fun foo() = println("B companion")
+    }
+}
+
+class C : A, B {
+    override fun A.Companion.foo() = println("A implemented")
+    override fun B.Companion.foo() = println("B implemented")
+}
+
+fun main() {
+    C().A.foo() // Output: A implemented
+    C().B.foo() // Output: B implemented
+}
+2. Kotlin Interface can define Extention Functions
+In Kotlin, extension functions can be defined for interfaces, which means that you can add functionality to an existing interface without modifying the interface itself. This is a powerful feature of Kotlin that allows you to extend the functionality of interfaces without having to modify their source code.
+
+For example, let’s say you have an interface named Clickable that defines a method named onClick(). You can define an extension function for the Clickable interface that provides additional functionality:
+
+interface Clickable {
+    fun onClick()
+}
+fun Clickable.doubleClick() {
+    onClick()
+    onClick()
+}
+In this example, the doubleClick() function is an extension function for the Clickable interface. It calls the onClick() function twice, effectively simulating a double click.
+
+By allowing extension functions to be defined for interfaces, Kotlin provides a way to add functionality to existing interfaces without breaking existing code that relies on those interfaces. This is a major advantage over traditional object-oriented programming languages like Java, which do not allow extension functions to be defined for interfaces.
+
+However, it is important to note that the use of extension functions can also lead to confusion and make code harder to read if not used carefully. It is also possible to create conflicting extension functions if multiple extension functions with the same name and signature are defined for an interface.
+
+3. About Marker Interface
+In Kotlin, marker interfaces are not different from regular interfaces. A marker interface is simply an interface with no methods or properties, used to mark a class as conforming to a particular contract.
+
+In Java, marker interfaces are used extensively, for example, the Serializable interface is a marker interface, which signals that an object can be serialized. However, in Kotlin, you can achieve the same effect by annotating the class with the @Serializable annotation.
+
+Kotlin provides a few built-in marker interfaces like Cloneable and Serializable, but they are not used as extensively as in Java. In general, it is recommended to use annotations instead of marker interfaces in Kotlin.
+
+An annotation can be used to mark a class as conforming to a certain contract, and it can also carry additional metadata that can be useful at runtime or compile-time. Annotations can be processed at compile time by tools like the Kotlin Annotation Processor or the Java Annotation Processor, whereas marker interfaces cannot.
+
+Note that Kotlin does support marker interfaces, it is generally recommended to use annotations instead, as they provide more flexibility and can be processed by annotation processing tools.
+
+Limitations to using interfaces in Kotlin
+There are some limitations to using interfaces in Kotlin:
+
+Interfaces cannot store state: In Kotlin, interfaces cannot have any property with a backing field. They can only have abstract properties that must be overridden by classes implementing the interface. However, you can define constant properties in interfaces that do not require a backing field.
+Interfaces cannot have constructors: Unlike classes, interfaces do not have constructors. This means that you cannot instantiate an interface in Kotlin. However, you can implement an interface using a class and instantiate the class instead.
+Interfaces cannot have private members: In Kotlin, all members of an interface are public by default. You cannot define private members in an interface.
+Interfaces cannot have static members: In Kotlin, interfaces cannot have static members like in Java. Instead, you can use companion objects to define static members.
+Interfaces cannot have final members: Unlike classes, interfaces in Kotlin cannot have final members. This means that any member of an interface can be overridden by a class implementing the interface.
+It is important to keep these limitations in mind when designing your Kotlin application with interfaces.
+
+Advantages of Kotlin interfaces:
+Multiple inheritance: Kotlin interfaces allow a class to implement multiple interfaces. This is a significant advantage over Java, which only allows a class to extend one superclass. With interfaces, you can compose functionality from multiple sources.
+Open by default: Kotlin interfaces are open by default, meaning that they can be implemented by any class. This makes it easier to work with interfaces in Kotlin than in Java, where you must explicitly declare an interface as public and then implement it in a separate class.
+Default implementations: In Kotlin, interfaces can provide default implementations for methods. This allows interfaces to define a common behavior for their methods that can be reused by all implementing classes. This is similar to the default methods in Java 8 interfaces.
+Extension functions: Kotlin allows extension functions to be defined for interfaces. This can be used to add functionality to existing interfaces without modifying the interface itself.
+Disadvantages of Kotlin interfaces:
+Complexity: While interfaces can be powerful, they can also add complexity to your code. When multiple interfaces are implemented, it can become difficult to keep track of which methods are being called and from where.
+Tight coupling: Interfaces can lead to tight coupling between classes, which can make it difficult to modify code later on. When a class implements an interface, it is bound to the interface’s API, which can limit the class’s flexibility.
+Multiple implementations: If multiple implementations are provided for the same interface method, it can be difficult to determine which implementation will be used. This can result in unexpected behavior and bugs.
+Performance: Interfaces can impact performance, particularly when used extensively in a large codebase. This is due to the additional overhead required to resolve method calls at runtime.
+Summary
+In summary, Kotlin interfaces provide a powerful way to define contracts and abstract functionality that can be implemented by classes. They can contain abstract methods, default implementations, and properties. Kotlin interfaces support multiple inheritance and allow interfaces to extend other interfaces, but not implement them. Interfaces can also have companion objects, which can be implemented by classes that implement the interface. Kotlin allows extension functions to be defined for interfaces, which can add functionality to existing interfaces without modifying them. Overall, Kotlin interfaces offer many benefits, including flexibility, reusability, and compatibility with Java interfaces. However, they also have some limitations, such as the inability to define static methods or final fields, and the potential for naming conflicts between companion objects.
+
+
+Links ---https://blog.devgenius.io/mastering-interfaces-in-kotlin-4c160928d6e#:~:text=About%20Marker%20Interface,conforming%20to%20a%20particular%20contract.
