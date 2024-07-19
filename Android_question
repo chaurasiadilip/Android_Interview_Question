@@ -32,6 +32,8 @@ Implementation: To enable MultiDex, developers typically need to modify their ap
 Gradle Configuration: In the build.gradle file, the developer enables MultiDex by setting multiDexEnabled to true in the defaultConfig section.
 Application Class: For versions before Android 5.0, the application class needs to extend android.support.multidex.MultiDexApplication or override the attachBaseContext() method to call MultiDex.install(this).
 Using MultiDex can impact your app’s build time and runtime performance, particularly at startup. Thus, it’s generally advised to optimize your app’s method count through techniques like ProGuard or R8 to avoid hitting the 64K limit unless necessary.
+
+
 How does the Android Push Notification system work?
 The Android Push Notification system, typically implemented using Firebase Cloud Messaging (FCM), is a mechanism to send messages from a server to Android devices. This system is widely used for various purposes like sending alerts, updates, and promotional content. Here’s an overview of how it works:
 1. Components Involved:
